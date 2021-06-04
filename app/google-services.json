@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1037314693869",
+    "project_id": "mycareer-nhantd",
+    "storage_bucket": "mycareer-nhantd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037314693869:android:429456e8a31a16bac4cae4",
+        "android_client_info": {
+          "package_name": "vn.nhantd.mycareer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1037314693869-t1nbtcet5jimq5ptgq69hj7o445e20gp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAafw_rofFDEco25AfQb_90m5CLOvmuNbk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1037314693869-t1nbtcet5jimq5ptgq69hj7o445e20gp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

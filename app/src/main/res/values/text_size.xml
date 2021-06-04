@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="h1">30dp</string>
+    <string name="h2">14dp</string>
+    <string name="h3">18dp</string>
+    <string name="normal">14dp</string>
+</resources>

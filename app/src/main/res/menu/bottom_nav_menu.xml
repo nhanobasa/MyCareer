@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/nav_job"
+        android:icon="@drawable/ic_baseline_job_24"
+        android:title="@string/jobs" />
+
+    <item
+        android:id="@+id/nav_notification"
+        android:icon="@drawable/ic_baseline_notifications_active_24"
+        android:title="@string/notifications" />
+
+    <item
+        android:id="@+id/nav_profile_user"
+        android:icon="@drawable/profile_user"
+        android:title="@string/profile_user" />
+
+</menu>
