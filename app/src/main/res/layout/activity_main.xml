@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -8,18 +9,18 @@
 
     <!--    Layout is used when start app-->
     <LinearLayout
-        android:id="@+id/layoutStartApp"
+        android:id="@+id/layout_start_app"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/imgLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="This is MyCareer logo"
+            android:contentDescription="@string/this_is_mycareer_logo"
             android:src="@drawable/mycareer_logo" />
 
         <ProgressBar
@@ -27,33 +28,35 @@
             style="@style/Widget.AppCompat.ProgressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:indeterminateTint="@color/teal_700" />
+            android:indeterminateTint="@color/colorPrimary" />
     </LinearLayout>
 
     <!--    Home Layout-->
     <LinearLayout
+        android:id="@+id/layout_run_app"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <!--        Top bar layout-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp">
+            android:layout_height="wrap_content"
+            android:background="@drawable/header">
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:paddingStart="6dp"
                 android:src="@drawable/mycareer_logo"
-                android:paddingStart="6dp"/>
+                tools:ignore="RtlSymmetry" />
 
             <RelativeLayout
                 android:id="@+id/bar_nav"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white">
+                android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -89,6 +92,7 @@
                     android:layout_marginEnd="6dp">
 
                     <Button
+                        android:id="@+id/btn_menu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ic_baseline_menu_24" />
@@ -118,7 +122,7 @@
                 android:id="@+id/fragment_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="6dp"/>
+                android:padding="6dp" />
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_navigation"
