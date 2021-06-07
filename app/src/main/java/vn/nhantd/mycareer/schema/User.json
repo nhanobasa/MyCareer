@@ -1,0 +1,119 @@
+{
+  "title": "User",
+  "properties": {
+    "_id": {
+      "bsonType": "objectId"
+    },
+    "_partition": {
+      "bsonType": "string"
+    },
+    "uid": {
+      "bsonType": "string"
+    },
+    "username": {
+      "bsonType": "string"
+    },
+    "name": {
+      "bsonType": "string"
+    },
+    "email": {
+      "bsonType": "string"
+    },
+    "phone": {
+      "bsonType": "string"
+    },
+    "sex": {
+      "bsonType": "string"
+    },
+    "dob": {
+      "bsonType": "string"
+    },
+    "marital_status": {
+      "bsonType": "string"
+    },
+    "address": {
+      "bsonType": "string"
+    },
+    "photoUrl": {
+      "bsonType": "string"
+    },
+    "career_goals": {
+      "bsonType": "object",
+      "properties": {
+        "position": {
+          "bsonType": "string"
+        },
+        "level": {
+          "bsonType": "string"
+        },
+        "salary": {
+          "bsonType": "object",
+          "properties": {
+            "from_salary": {
+              "bsonType": "double"
+            },
+            "to_salary": {
+              "bsonType": "double"
+            },
+            "currency_unit": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "category": {
+          "bsonType": "string"
+        },
+        "address": {
+          "bsonType": "string"
+        }
+      }
+    },
+    "experience": {
+      "bsonType": "object",
+      "properties": {
+        "total_years": {
+          "bsonType": "int"
+        },
+        "current_level": {
+          "bsonType": "string"
+        },
+        "work_progress": {
+          "bsonType": "array",
+          "uniqueItems": true,
+          "items": {
+            "bsonType": "objectId"
+          }
+        }
+      }
+    },
+    "education": {
+      "bsonType": "object",
+      "properties": {
+        "degree": {
+          "bsonType": "string"
+        },
+        "foreign_language": {
+          "bsonType": "array",
+          "uniqueItems": true,
+          "items": {
+            "bsonType": "string"
+          }
+        }
+      }
+    },
+    "references": {
+      "bsonType": "object",
+      "properties": {
+        "name": {
+          "bsonType": "string"
+        },
+        "phone": {
+          "bsonType": "string"
+        },
+        "email": {
+          "bsonType": "string"
+        }
+      }
+    }
+  }
+}

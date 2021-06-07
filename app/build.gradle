@@ -3,6 +3,8 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+apply plugin: 'realm-android'
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -30,6 +32,10 @@ android {
     buildFeatures {
         viewBinding true
     }
+}
+
+realm {
+    syncEnabled = true
 }
 
 dependencies {

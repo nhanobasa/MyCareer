@@ -24,6 +24,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import vn.nhantd.mycareer.dao.UserDAO;
+import vn.nhantd.mycareer.dao.UserDAOImpl;
+import vn.nhantd.mycareer.firebase.auth.FirebaseAuthentication;
+
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int RC_SIGN_IN = 1;
@@ -115,6 +119,8 @@ public class LoginActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = auth.getCurrentUser();
+                            new UserDAOImpl().add(FirebaseAuthentication.getProfileUser(user));
+
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         } else {
                             // If sign in fails, display a message to the user.
