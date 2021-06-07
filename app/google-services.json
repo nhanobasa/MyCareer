@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "1037314693869",
+    "firebase_url": "https://mycareer-nhantd-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "mycareer-nhantd",
     "storage_bucket": "mycareer-nhantd.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1037314693869:android:429456e8a31a16bac4cae4",
+        "mobilesdk_app_id": "1:1037314693869:android:a4fec4ef12ed5b6ac4cae4",
         "android_client_info": {
           "package_name": "vn.nhantd.mycareer"
         }
