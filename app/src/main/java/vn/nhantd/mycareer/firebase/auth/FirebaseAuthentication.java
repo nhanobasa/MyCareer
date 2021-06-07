@@ -5,7 +5,10 @@ import android.net.Uri;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.bson.types.ObjectId;
+
 import vn.nhantd.mycareer.model.user.User;
+import vn.nhantd.mycareer.util.HexUtils;
 
 public class FirebaseAuthentication {
 
@@ -30,13 +33,15 @@ public class FirebaseAuthentication {
             // authenticate with your backend server, if you have one. Use
             // FirebaseUser.getIdToken() instead.
             String uid = user.getUid();
+
             User u = new User();
+            u.set_id(new ObjectId(HexUtils.convertStringToHex(uid)));
             u.setUid(uid);
             u.setName(name);
-            assert photoUrl != null;
             u.setPhotoUrl(photoUrl.toString());
             u.setPhone(phone);
             u.setEmail(email);
+            u.set_partition("sync");
 
             return u;
         }
@@ -60,7 +65,9 @@ public class FirebaseAuthentication {
             // authenticate with your backend server, if you have one. Use
             // FirebaseUser.getIdToken() instead.
             String uid = user.getUid();
+
             User u = new User();
+            u.set_id(new ObjectId(HexUtils.convertStringToHex(uid)));
             u.setUid(uid);
             u.setName(name);
             u.setPhotoUrl(photoUrl.toString());

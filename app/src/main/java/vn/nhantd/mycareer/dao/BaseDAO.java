@@ -2,6 +2,8 @@ package vn.nhantd.mycareer.dao;
 
 import android.util.Log;
 
+import androidx.lifecycle.ViewModel;
+
 import com.google.android.gms.tasks.Task;
 
 import java.util.concurrent.ExecutorService;
@@ -21,20 +23,7 @@ import io.realm.mongodb.User;
 import io.realm.mongodb.sync.SyncConfiguration;
 import vn.nhantd.mycareer.BuildConfig;
 
-public abstract class BaseDAO {
+public abstract class BaseDAO extends ViewModel {
     Realm realm;
     App app;
-
-    private void addChangeListenerToRealm(Realm uiThreadRealm) {
-        // all Users in the realm
-        RealmResults<vn.nhantd.mycareer.model.user.User> users = uiThreadRealm.where(vn.nhantd.mycareer.model.user.User.class).findAllAsync();
-
-        users.addChangeListener(new OrderedRealmCollectionChangeListener<RealmResults<vn.nhantd.mycareer.model.user.User>>() {
-            @Override
-            public void onChange(RealmResults<vn.nhantd.mycareer.model.user.User> users, OrderedCollectionChangeSet changeSet) {
-                //
-            }
-        });
-
-    }
 }

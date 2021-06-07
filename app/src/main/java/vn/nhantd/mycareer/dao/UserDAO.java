@@ -1,18 +1,18 @@
 package vn.nhantd.mycareer.dao;
 
-import org.bson.types.ObjectId;
 
+import io.realm.RealmSet;
 import vn.nhantd.mycareer.model.user.User;
 
 public interface UserDAO {
     void add(User user);
 
-    void update(ObjectId _id);
+    void update(User u);
 
-    void delete(ObjectId _id);
+    void delete(User u);
 
-    void get(ObjectId _id);
+    User get(User u);
 
-    void getAll();
+    RealmSet<User> getAll();
 
 }

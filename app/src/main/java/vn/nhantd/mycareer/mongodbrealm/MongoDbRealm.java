@@ -21,18 +21,20 @@ public class MongoDbRealm extends Application {
         String appID = "mycareer-kywcm";
         App app = new App(new AppConfiguration.Builder(appID)
                 .appName("MyCareer")
+                .appVersion("1.0")
                 .baseUrl("https://realm.mongodb.com")
                 .build());
 
         RealmLog.setLevel(LogLevel.ALL);
 
 
-        Credentials credentials = Credentials.anonymous();
+        Credentials credentials = Credentials.emailPassword("tdnhan.it@gmail.com", "123456");
         app.loginAsync(credentials, result -> {
             if (result.isSuccess()) {
-                Log.v("QUICKSTART", "Successfully authenticated anonymously.");
+                Log.v("Realm", "Successfully authenticated email.");
                 io.realm.mongodb.User u = app.currentUser();
-                String partitionValue = "_patition=sync";
+
+                String partitionValue = "sync";
                 SyncConfiguration config = new SyncConfiguration.Builder(
                         u,
                         partitionValue)
@@ -43,7 +45,7 @@ public class MongoDbRealm extends Application {
                 Realm.setDefaultConfiguration(config);
 
             } else {
-                Log.e("QUICKSTART", "Failed to log in. Error: " + result.getError());
+                Log.e("Realm", "Failed to log in. Error: " + result.getError());
             }
         });
 

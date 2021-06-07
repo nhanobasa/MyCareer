@@ -5,7 +5,9 @@ import io.realm.annotations.PrimaryKey;
 
 import org.bson.types.ObjectId;
 
-public class User extends RealmObject {
+import java.io.Serializable;
+
+public class User extends RealmObject implements Serializable {
     public User() {
     }
 
