@@ -3,7 +3,7 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
-apply plugin: 'realm-android'
+//apply plugin: 'realm-android'
 
 android {
     buildFeatures {
@@ -40,14 +40,13 @@ android {
     }
 }
 
-realm {
-    syncEnabled = true
-}
+//realm {
+//    syncEnabled = true
+//}
 
 dependencies {
     // Also declare the dependency for the Google Play services library and specify its version
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
-
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
@@ -59,12 +58,24 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
+    // mongodb realm
+//    implementation 'io.realm:android-adapters:4.0.0'
+
+    //Retrofit & Gson
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.retrofit2:retrofit:2.0.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.0.0'
+
     // utils
+    // https://mvnrepository.com/artifact/org.mongodb/bson
+    implementation group: 'org.mongodb', name: 'bson', version: '3.12.1'
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     // https://mvnrepository.com/artifact/commons-codec/commons-codec
     implementation group: 'commons-codec', name: 'commons-codec', version: '1.14'
+    annotationProcessor 'androidx.room:room-compiler:2.2.5'
     compileOnly 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
     // https://mvnrepository.com/artifact/com.squareup.picasso/picasso

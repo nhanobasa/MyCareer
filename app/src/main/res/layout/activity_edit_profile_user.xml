@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="user"
+            type="vn.nhantd.mycareer.model.user.User" />
+    </data>
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/layout_profile_general"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/app1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <!--  Layout profile general      -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:id="@+id/img_profile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/profile_user" />
+
+                <EditText
+                    android:id="@+id/txt_profile_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:editable="false"
+                    android:text="@{user.name}"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_profile_position_01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Senior"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginEnd="5dp"
+                            android:src="@drawable/ic_baseline_smartphone_24" />
+
+                        <TextView
+                            android:id="@+id/txt_profile_phone_01"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{user.phone}"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginEnd="5dp"
+                            android:src="@drawable/ic_baseline_mark_email_read_24" />
+
+                        <TextView
+                            android:id="@+id/txt_profile_email_01"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{user.email}"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+            <!--  End Layout profile general      -->
+
+            <!--  Layout profile user      -->
+            <LinearLayout
+
+                android:id="@+id/layout_profile_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Thông tin cá nhân"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
+
+                <!--  Sex         -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/header"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Giới tính" />
+
+                    <Spinner
+                        android:id="@+id/txt_profile_sex"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" />
+                </LinearLayout>
+                <!--  End Sex         -->
+
+                <!--  dob         -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/header"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ngày sinh" />
+
+                    <EditText
+                        android:id="@+id/txt_profile_dob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@{user.dob}" />
+                </LinearLayout>
+                <!--  End dob         -->
+
+                <!--  marital status        -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/header"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tình trạng hôn nhân" />
+
+                    <Spinner
+                        android:id="@+id/txt_profile_marital_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" />
+                </LinearLayout>
+                <!--  End marital status         -->
+
+                <!--  Email         -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/header"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email" />
+
+                    <EditText
+                        android:id="@+id/txt_profile_email_02"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" />
+                </LinearLayout>
+                <!--  End Email         -->
+
+                <!--  Phone         -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/header"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Số điện thoại" />
+
+                    <Spinner
+                        android:id="@+id/txt_profile_phone_02"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" />
+                </LinearLayout>
+                <!--  End Phone         -->
+
+                <!--  Address         -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/header"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Địa chỉ" />
+
+                    <Spinner
+                        android:id="@+id/txt_profile_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" />
+                </LinearLayout>
+                <!--  End Address         -->
+
+            </LinearLayout>
+            <!--  End Layout profile user      -->
+
+            <!--  Layout profile career goal      -->
+            <LinearLayout
+
+                android:id="@+id/layout_profile_career_goal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Mục tiêu nghề nghiệp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
+
+                <!--  Chức danh         -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/header"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chức danh" />
+
+                    <Spinner
+                        android:id="@+id/txt_profile_position_02"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" />
+                </LinearLayout>
+                <!--  End Chức danh         -->
+
+                <!--  Cấp bậc         -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/header"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cấp bậc" />
+
+                    <Spinner
+                        android:id="@+id/txt_profile_level"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" />
+                </LinearLayout>
+                <!--  End Cấp bậc         -->
+
+                <!--  Mức lương        -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/header"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mức Lương" />
+
+                    <Spinner
+                        android:id="@+id/txt_profile_salary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" />
+                </LinearLayout>
+                <!--  End Mức lương         -->
+
+                <!--  Ngành nghề         -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/header"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ngành nghề" />
+
+                    <Spinner
+                        android:id="@+id/txt_profile_career_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" />
+                </LinearLayout>
+                <!--  End Ngành nghề         -->
+
+                <!--  Địa điểm làm việc         -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/header"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Địa điểm làm việc" />
+
+                    <Spinner
+                        android:id="@+id/txt_profile_address_work"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" />
+                </LinearLayout>
+                <!--  End Địa điểm làm việc         -->
+
+            </LinearLayout>
+            <!--  End Layout profile career goal  -->
+
+            <!--  Layout profile - kinh nghiệm      -->
+            <LinearLayout
+
+                android:id="@+id/layout_profile_experience"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Kinh nghiệm"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
+
+                <!--  Chức danh         -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/header"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Số năm kinh nghiệm" />
+
+                    <EditText
+                        android:id="@+id/txt_profile_experience_year"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" />
+                </LinearLayout>
+                <!--  End Chức danh         -->
+
+                <!--  Cấp bậc hiện tại         -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/header"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cấp bậc hiện tại" />
+
+                    <Spinner
+                        android:id="@+id/txt_profile_current_level"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" />
+                </LinearLayout>
+                <!--  End Cấp bậc hiện tại        -->
+
+                <!--  Quá trình làm việc       -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/header"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Quá trình làm việc"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerview_profile_work_progress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <!--  End Quá trình làm việc         -->
+
+
+            </LinearLayout>
+            <!--  End Layout profile - kinh nghiệm  -->
+
+            <!--  Layout profile - kinh nghiệm      -->
+            <LinearLayout
+
+                android:id="@+id/layout_profile_education"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Học vấn"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
+
+                <!--  Bằng cấp         -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/header"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bằng cấp cao nhất" />
+
+                    <EditText
+                        android:id="@+id/txt_profile_degree"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" />
+                </LinearLayout>
+                <!--  End Bằng cấp         -->
+
+                <!--  Ngôn ngữ         -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/header"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:text="Ngôn ngữ" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/txt_profile_language"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" />
+                </LinearLayout>
+                <!--  End Ngôn ngữ        -->
+
+                <!--  Quá trình làm việc       -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/header"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Quá trình làm việc"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerview_profile_language"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <!--  End Quá trình làm việc         -->
+
+
+            </LinearLayout>
+            <!--  End Layout profile - kinh nghiệm  -->
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</layout>

@@ -3,9 +3,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
-            name="user"
-            type="vn.nhantd.mycareer.model.user.User" />
+            name="ProfileUserViewModel"
+            type="vn.nhantd.mycareer.fragment.ui.ProfileUserViewModel" />
     </data>
 
     <FrameLayout xmlns:tools="http://schemas.android.com/tools"
@@ -43,12 +45,12 @@
                         android:layout_marginBottom="10dp"
                         android:src="@drawable/profile_user" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/txt_profile_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:text="@{user.name}"
+                        android:text="@{ProfileUserViewModel.user.name}"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 
@@ -82,7 +84,7 @@
                                 android:id="@+id/txt_profile_phone_01"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{user.phone}"
+                                android:text="@{ProfileUserViewModel.user.phone}"
                                 android:textColor="@color/black"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -102,7 +104,7 @@
                                 android:id="@+id/txt_profile_email_01"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{user.email}"
+                                android:text="@{ProfileUserViewModel.user.email}"
                                 android:textColor="@color/colorPrimary"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -144,7 +146,7 @@
                             android:layout_height="wrap_content"
                             android:text="Giới tính" />
 
-                        <Spinner
+                        <TextView
                             android:id="@+id/txt_profile_sex"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -166,12 +168,12 @@
                             android:layout_height="wrap_content"
                             android:text="Ngày sinh" />
 
-                        <EditText
+                        <TextView
                             android:id="@+id/txt_profile_dob"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
-                            android:text="@{user.dob}" />
+                            android:text="@{ProfileUserViewModel.user.dob}" />
                     </LinearLayout>
                     <!--  End dob         -->
 
@@ -189,11 +191,12 @@
                             android:layout_height="wrap_content"
                             android:text="Tình trạng hôn nhân" />
 
-                        <Spinner
+                        <TextView
                             android:id="@+id/txt_profile_marital_status"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="end" />
+                            android:gravity="end"
+                            android:text="@{ProfileUserViewModel.user.marital_status}" />
                     </LinearLayout>
                     <!--  End marital status         -->
 
@@ -211,11 +214,12 @@
                             android:layout_height="wrap_content"
                             android:text="Email" />
 
-                        <EditText
+                        <TextView
                             android:id="@+id/txt_profile_email_02"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="end" />
+                            android:gravity="end"
+                            android:text="@{ProfileUserViewModel.user.email}" />
                     </LinearLayout>
                     <!--  End Email         -->
 
@@ -233,11 +237,12 @@
                             android:layout_height="wrap_content"
                             android:text="Số điện thoại" />
 
-                        <Spinner
+                        <TextView
                             android:id="@+id/txt_profile_phone_02"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="end" />
+                            android:gravity="end"
+                            android:text="@{ProfileUserViewModel.user.phone}" />
                     </LinearLayout>
                     <!--  End Phone         -->
 
@@ -255,11 +260,12 @@
                             android:layout_height="wrap_content"
                             android:text="Địa chỉ" />
 
-                        <Spinner
+                        <TextView
                             android:id="@+id/txt_profile_address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="end" />
+                            android:gravity="end"
+                            android:text="@{ProfileUserViewModel.user.address}" />
                     </LinearLayout>
                     <!--  End Address         -->
 
@@ -299,11 +305,12 @@
                             android:layout_height="wrap_content"
                             android:text="Chức danh" />
 
-                        <Spinner
+                        <TextView
                             android:id="@+id/txt_profile_position_02"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="end" />
+                            android:gravity="end"
+                            android:text="@{ProfileUserViewModel.user.career_goals.position}" />
                     </LinearLayout>
                     <!--  End Chức danh         -->
 
@@ -321,11 +328,12 @@
                             android:layout_height="wrap_content"
                             android:text="Cấp bậc" />
 
-                        <Spinner
+                        <TextView
                             android:id="@+id/txt_profile_level"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="end" />
+                            android:gravity="end"
+                            android:text="@{ProfileUserViewModel.user.career_goals.level}" />
                     </LinearLayout>
                     <!--  End Cấp bậc         -->
 
@@ -343,11 +351,12 @@
                             android:layout_height="wrap_content"
                             android:text="Mức Lương" />
 
-                        <Spinner
+                        <TextView
                             android:id="@+id/txt_profile_salary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="end" />
+                            android:gravity="end"
+                            android:text="@{ProfileUserViewModel.user.career_goals.salary.toString()}" />
                     </LinearLayout>
                     <!--  End Mức lương         -->
 
@@ -365,11 +374,12 @@
                             android:layout_height="wrap_content"
                             android:text="Ngành nghề" />
 
-                        <Spinner
+                        <TextView
                             android:id="@+id/txt_profile_career_category"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="end" />
+                            android:gravity="end"
+                            android:text="@{ProfileUserViewModel.user.career_goals.category}" />
                     </LinearLayout>
                     <!--  End Ngành nghề         -->
 
@@ -387,11 +397,12 @@
                             android:layout_height="wrap_content"
                             android:text="Địa điểm làm việc" />
 
-                        <Spinner
+                        <TextView
                             android:id="@+id/txt_profile_address_work"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="end" />
+                            android:gravity="end"
+                            android:text="@{ProfileUserViewModel.user.career_goals.address}" />
                     </LinearLayout>
                     <!--  End Địa điểm làm việc         -->
 
@@ -431,11 +442,12 @@
                             android:layout_height="wrap_content"
                             android:text="Số năm kinh nghiệm" />
 
-                        <EditText
+                        <TextView
                             android:id="@+id/txt_profile_experience_year"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="end" />
+                            android:gravity="end"
+                            android:text="@{ProfileUserViewModel.user.experience.total_years.toString()}" />
                     </LinearLayout>
                     <!--  End Chức danh         -->
 
@@ -453,11 +465,12 @@
                             android:layout_height="wrap_content"
                             android:text="Cấp bậc hiện tại" />
 
-                        <Spinner
+                        <TextView
                             android:id="@+id/txt_profile_current_level"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="end" />
+                            android:gravity="end"
+                            android:text="@{ProfileUserViewModel.user.experience.current_level}" />
                     </LinearLayout>
                     <!--  End Cấp bậc hiện tại        -->
 
@@ -482,7 +495,8 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recyclerview_profile_work_progress"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:minHeight="0dp" />
                     </LinearLayout>
                     <!--  End Quá trình làm việc         -->
 
@@ -523,7 +537,7 @@
                             android:layout_height="wrap_content"
                             android:text="Bằng cấp cao nhất" />
 
-                        <EditText
+                        <TextView
                             android:id="@+id/txt_profile_degree"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

@@ -1,8 +1,5 @@
 package vn.nhantd.mycareer;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -24,9 +24,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-import vn.nhantd.mycareer.dao.UserDAO;
-import vn.nhantd.mycareer.dao.UserDAOImpl;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import vn.nhantd.mycareer.api.ApiService;
 import vn.nhantd.mycareer.firebase.auth.FirebaseAuthentication;
+import vn.nhantd.mycareer.model.user.User;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
@@ -119,7 +122,9 @@ public class LoginActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = auth.getCurrentUser();
-                            new UserDAOImpl().add(FirebaseAuthentication.getProfileUser(user));
+
+                            // <TODO>Đăng nhập thành công thì sẽ thêm profile vào database
+                            callApiCreateUser(FirebaseAuthentication.getProfileUser(user));
 
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         } else {
@@ -166,6 +171,11 @@ public class LoginActivity extends AppCompatActivity {
                             public void onComplete(@NonNull @org.jetbrains.annotations.NotNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(getApplicationContext(), "Login Sucsessful", Toast.LENGTH_SHORT).show();
+                                    FirebaseUser user = task.getResult().getUser();
+
+                                    // <TODO>Đăng nhập thành công thì sẽ thêm profile vào database
+                                    callApiCreateUser(FirebaseAuthentication.getProfileUser(user));
+
                                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Login Failed!", Toast.LENGTH_SHORT).show();
@@ -182,5 +192,21 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void callApiCreateUser(User user) {
+        ApiService.apiService.createUsr(user).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if(response.body()!=null){
+                    Log.d(TAG, "get all work progress of user successful!");
+                }else
+                    Log.d(TAG, "get all work progress of user fail!");
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.d(TAG, "Call api create user failed!");
+            }
+        });
+    }
 
 }

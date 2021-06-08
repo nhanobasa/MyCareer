@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nav_profile_user:
                     if (checkLogin()) {
                         menuItem = R.id.nav_profile_user;
-                        fragmentSelected = ProfileUserFragment.newInstance(FirebaseAuthentication.getProfileUser(), "");
+                        fragmentSelected = ProfileUserFragment.newInstance("", "");
                         break;
                     }
 

@@ -1,29 +1,35 @@
 package vn.nhantd.mycareer.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Text;
 
-import io.realm.Realm;
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import vn.nhantd.mycareer.R;
-import vn.nhantd.mycareer.dao.UserDAOImpl;
+import vn.nhantd.mycareer.api.ApiService;
 import vn.nhantd.mycareer.databinding.FragmentProfileUserBinding;
-import vn.nhantd.mycareer.firebase.auth.FirebaseAuthentication;
+import vn.nhantd.mycareer.fragment.adapter.WorkProgressAdapter;
+import vn.nhantd.mycareer.fragment.ui.ProfileUserViewModel;
 import vn.nhantd.mycareer.model.user.User;
+import vn.nhantd.mycareer.model.user.WorkProgress;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,7 +39,8 @@ import vn.nhantd.mycareer.model.user.User;
 public class ProfileUserFragment extends Fragment {
     private FragmentProfileUserBinding binding;
     private User user;
-    private UserDAOImpl userDAO;
+    List<WorkProgress> workProgressList = new ArrayList<>();
+    private WorkProgressAdapter adapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,8 +48,9 @@ public class ProfileUserFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private User mParam1;
+    private String mParam1;
     private String mParam2;
+    private String TAG = "ProfileUserFragment";
 
     public ProfileUserFragment() {
         // Required empty public constructor
@@ -57,10 +65,10 @@ public class ProfileUserFragment extends Fragment {
      * @return A new instance of fragment ProfileUserFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProfileUserFragment newInstance(User param1, String param2) {
+    public static ProfileUserFragment newInstance(String param1, String param2) {
         ProfileUserFragment fragment = new ProfileUserFragment();
         Bundle args = new Bundle();
-        args.putSerializable(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -69,12 +77,9 @@ public class ProfileUserFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        userDAO = new UserDAOImpl();
         if (getArguments() != null) {
-            mParam1 = (User) getArguments().getSerializable(ARG_PARAM1);
+            mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-            user = userDAO.get(mParam1);
-
         }
 
     }
@@ -84,15 +89,61 @@ public class ProfileUserFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile_user, container, false);
+
+//        binding = FragmentProfileUserBinding.inflate(inflater, container, false);
         binding = FragmentProfileUserBinding.bind(v);
-        return v;
+
+
+        return binding.getRoot();
+    }
+
+    private void getAllWorkProgress(User user) {
+        ApiService.apiService.getAllWorkProgressOfUser(user.getUid()).enqueue(new Callback<List<WorkProgress>>() {
+            @Override
+            public void onResponse(Call<List<WorkProgress>> call, Response<List<WorkProgress>> response) {
+
+                if (response.body() != null) {
+                    workProgressList = response.body();
+                    adapter.setData(workProgressList);
+                    adapter.notifyDataSetChanged();
+                    Log.d(TAG, "get all work progress of user successful!");
+                    Log.d(TAG, adapter.getData().toString());
+                } else
+                    Log.d(TAG, "get all work progress of user fail!");
+            }
+
+            @Override
+            public void onFailure(Call<List<WorkProgress>> call, Throwable t) {
+                Log.d(TAG, "get all work progress of user fail!");
+            }
+        });
     }
 
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.setUser(user);
-        Picasso.with(getContext()).load(user.getPhotoUrl()).into(binding.imgProfile);
+        ProfileUserViewModel model = new ViewModelProvider(this).get(ProfileUserViewModel.class);
+
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        binding.recyclerviewProfileWorkProgress.setLayoutManager(llm);
+
+        model.getUser().observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                if (user != null) {
+                    binding.setProfileUserViewModel(model);
+                    if (user.getPhotoUrl() != null)
+                        Picasso.with(getContext()).load(user.getPhotoUrl()).into(binding.imgProfile);
+                    adapter = new WorkProgressAdapter(getContext(), workProgressList);
+                    binding.recyclerviewProfileWorkProgress.setAdapter(adapter);
+                    //get list work progress
+                    getAllWorkProgress(user);
+                }
+            }
+        });
+
+
     }
 
     @Override

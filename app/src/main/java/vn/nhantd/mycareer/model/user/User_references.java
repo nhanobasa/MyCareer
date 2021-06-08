@@ -1,15 +1,9 @@
 package vn.nhantd.mycareer.model.user;
 
-import io.realm.RealmObject;
-import io.realm.annotations.RealmClass;
-
-@RealmClass(embedded = true)
-public class User_references extends RealmObject {
-
+public class User_references {
     private String email;
     private String name;
     private String phone;
-
     // Standard getters & setters
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }

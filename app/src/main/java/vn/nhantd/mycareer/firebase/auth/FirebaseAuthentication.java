@@ -34,14 +34,16 @@ public class FirebaseAuthentication {
             // FirebaseUser.getIdToken() instead.
             String uid = user.getUid();
 
-            User u = new User();
-            u.set_id(new ObjectId(HexUtils.convertStringToHex(uid)));
-            u.setUid(uid);
-            u.setName(name);
-            u.setPhotoUrl(photoUrl.toString());
-            u.setPhone(phone);
-            u.setEmail(email);
-            u.set_partition("sync");
+            User u = User.builder()
+                    ._id(new ObjectId(HexUtils.convertStringToHex(uid)))
+                    .uid(uid)
+                    .name(name)
+                    .photoUrl(photoUrl != null ? photoUrl.toString() : null)
+                    .phone(phone)
+                    .email(email)
+                    ._partition("sync")
+                    .build();
+
 
             return u;
         }
@@ -66,13 +68,15 @@ public class FirebaseAuthentication {
             // FirebaseUser.getIdToken() instead.
             String uid = user.getUid();
 
-            User u = new User();
-            u.set_id(new ObjectId(HexUtils.convertStringToHex(uid)));
-            u.setUid(uid);
-            u.setName(name);
-            u.setPhotoUrl(photoUrl.toString());
-            u.setPhone(phone);
-            u.setEmail(email);
+            User u = User.builder()
+                    ._id(new ObjectId(HexUtils.convertStringToHex(uid)))
+                    .uid(uid)
+                    .name(name)
+                    .photoUrl(photoUrl != null ? photoUrl.toString() : null)
+                    .phone(phone)
+                    .email(email)
+                    ._partition("sync")
+                    .build();
 
             return u;
         }
