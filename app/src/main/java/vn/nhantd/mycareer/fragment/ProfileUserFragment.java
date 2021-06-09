@@ -1,5 +1,6 @@
 package vn.nhantd.mycareer.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,9 +27,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import vn.nhantd.mycareer.EditProfileUserActivity;
 import vn.nhantd.mycareer.R;
+import vn.nhantd.mycareer.adapter.WorkProgressAdapter;
 import vn.nhantd.mycareer.api.ApiService;
 import vn.nhantd.mycareer.databinding.FragmentProfileUserBinding;
-import vn.nhantd.mycareer.fragment.adapter.WorkProgressAdapter;
 import vn.nhantd.mycareer.ui.ProfileUserViewModel;
 import vn.nhantd.mycareer.model.user.User;
 import vn.nhantd.mycareer.model.user.WorkProgress;
@@ -161,5 +162,26 @@ public class ProfileUserFragment extends Fragment {
     public void onDestroy() {
         binding = null;
         super.onDestroy();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==1){
+            if (resultCode==Activity.RESULT_OK){
+                User result = (User) data.getSerializableExtra(EditProfileUserActivity.EXTRA_DATA);
+                ApiService.apiService.updateUser(result.get_id(), result).enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        Log.d(TAG, "update user successful!");
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        Log.d(TAG, "update user failure!");
+                    }
+                });
+            }
+        }
     }
 }

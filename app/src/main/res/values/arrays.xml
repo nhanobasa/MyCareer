@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sex">
+        <item>Giới tính</item>
+        <item>Nam</item>
+        <item>Nữ</item>
+        <item>Khác</item>
+    </string-array>
+
+    <string-array name="marital_status">
+        <item>Tình trạng hôn nhân</item>
+        <item>Đã kết hôn</item>
+        <item>Độc thân</item>
+        <item>Khác</item>
+    </string-array>
+
+    <string-array name="career_level">
+
+        <item>Chọn cấp bậc</item>
+        <item>Sinh viên/ Thực tập</item>
+        <item>Mới tốt nghiệp</item>
+        <item>Nhân viên</item>
+        <item>Trưởng nhóm/ Giám sát</item>
+        <item>Quản lý</item>
+        <item>Phó giám đốc</item>
+        <item>Tổng giám đôc</item>
+        <item>Chủ tịch/ Phó chủ tịch</item>
+    </string-array>
+
+    <string-array name="career_category">
+        <item>Chọn ngành nghề</item>
+        <item>An Ninh / Bảo Vệ</item>
+        <item>An toàn lao động</item>
+        <item>Bán hàng / Kinh doanh</item>
+        <item>Bán lẻ / Bán sỉ</item>
+        <item>Bảo hiểm</item>
+        <item>Bất động sản</item>
+        <item>Biên phiên dịch</item>
+        <item>Bưu chính viễn thông</item>
+        <item>Chăn nuôi / Thú y</item>
+        <item>Chứng khoán</item>
+        <item>CNTT - Phần cứng / Mạng	</item>
+        <item>CNTT - Phần mềm</item>
+        <item>Công nghệ sinh học</item>
+        <item>Công nghệ thực phẩm / Dinh dưỡng</item>
+        <item>Cơ khí/ Ô tô/ Tự động hóa</item>
+        <item>Dầu khí</item>
+        <item>Dệt may / Da giày / Thời trang</item>
+        <item>Dịch vụ khách hàng</item>
+        <item>Du lịch</item>
+        <item>Dược phẩm</item>
+        <item>Điện / Điện tử / Điện lạnh</item>
+        <item>Đồ gỗ</item>
+        <item>Giải trí</item>
+        <item>Giáo dục / Đào tạo</item>
+        <item>Hàng gia dụng / Chăm sóc cá nhân</item>
+        <item>Hàng hải</item>
+        <item>Hàng không</item>
+        <item>Hành chính / Thư ký</item>
+        <item>Hóa học</item>
+        <item>In ấn / Xuất bản</item>
+        <item>Kế toán / Kiểm toán</item>
+        <item>Khoáng sản</item>
+        <item>Kiến trúc</item>
+        <item>Lao động phổ thông</item>
+        <item>Lâm Nghiệp</item>
+        <item>Luật / Pháp lý</item>
+        <item>Môi trường</item>
+        <item>Mới tốt nghiệp / Thực tập</item>
+        <item>Mỹ thuật / Nghệ thuật / Thiết kế</item>
+        <item>Ngân hàng</item>
+        <item>Nhà hàng / Khách sạn</item>
+        <item>Nhân sự</item>
+        <item>Nội ngoại thất</item>
+        <item>Nông nghiệp</item>
+        <item>Phi chính phủ / Phi lợi nhuận</item>
+        <item>Quản lý chất lượng (QA/QC)</item>
+        <item>Quản lý điều hành</item>
+        <item>Quảng cáo / Đối ngoại / Truyền Thông</item>
+        <item>Sản xuất / Vận hành sản xuất</item>
+        <item>Tài chính / Đầu tư</item>
+        <item>Thống kê</item>
+        <item>Thu mua / Vật tư</item>
+        <item>Thủy lợi</item>
+        <item>Thủy sản / Hải sản</item>
+        <item>Thư viện</item>
+        <item>Thực phẩm - Đồ uống</item>
+        <item>Tiếp thị / Marketing</item>
+        <item>Tiếp thị trực tuyến</item>
+        <item>Tổ chức sự kiện</item>
+        <item>Trắc địa / Địa Chất</item>
+        <item>Truyền hình / Báo chí / Biên tập</item>
+        <item>Tư vấn</item>
+        <item>Vận chuyển / Giao nhận / Kho vận</item>
+        <item>Xây dựng</item>
+        <item>Xuất nhập khẩu</item>
+        <item>Y tế / Chăm sóc sức khỏe</item>
+        <item>Bảo trì / Sửa chữa</item>
+        <item>Ngành khác</item>
+    </string-array>
+</resources>

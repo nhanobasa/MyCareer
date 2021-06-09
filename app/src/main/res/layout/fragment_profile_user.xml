@@ -14,6 +14,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
         tools:context=".fragment.ProfileUserFragment">
 
         <!-- TODO: Update blank fragment layout -->
@@ -74,7 +75,7 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/profile_user" />
+                         />
 
                     <TextView
                         android:id="@+id/txt_profile_name"

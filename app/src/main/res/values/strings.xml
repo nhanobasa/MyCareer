@@ -24,9 +24,4 @@
     <string name="network_error">Không thể kết nối Internet</string>
     <string name="btn_try_connect">Thử lại</string>
     <string name="btn_quen_mat_khau">Quên mật khẩu</string>
-    <string-array name="marital_status">
-        <item>Đã kết hôn</item>
-        <item>Độc thân</item>
-        <item>Khác</item>
-    </string-array>
 </resources>

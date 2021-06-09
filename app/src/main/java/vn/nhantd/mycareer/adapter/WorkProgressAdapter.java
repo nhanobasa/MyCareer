@@ -1,4 +1,4 @@
-package vn.nhantd.mycareer.fragment.adapter;
+package vn.nhantd.mycareer.adapter;
 
 import android.content.Context;
 import android.util.Log;

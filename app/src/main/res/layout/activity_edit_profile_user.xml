@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="UserViewModel"
-            type="vn.nhantd.mycareer.ui.UserViewModel" />
+            name="EditProfileUserViewModel"
+            type="vn.nhantd.mycareer.ui.EditProfileUserViewModel" />
     </data>
 
     <!-- TODO: Update blank fragment layout -->
@@ -32,6 +32,36 @@
                 android:padding="5dp"
                 android:paddingTop="10dp">
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="-30dp"
+                    android:background="@null"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_profile_edit_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:background="@null"
+                        android:text="Hủy"
+                        android:textColor="#870115" />
+
+                    <Button
+                        android:id="@+id/btn_profile_update"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="right"
+                        android:layout_marginEnd="-2dp"
+                        android:background="@null"
+                        android:text="Cập nhật"
+                        android:textColor="@color/colorPrimary" />
+
+
+                </RelativeLayout>
+
                 <ImageView
                     android:id="@+id/img_profile"
                     android:layout_width="100dp"
@@ -44,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:text="@{UserViewModel.user.name}"
+                    android:text="@={EditProfileUserViewModel.user.name}"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -80,7 +110,7 @@
                             android:id="@+id/txt_profile_phone_01"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{UserViewModel.user.phone}"
+                            android:text="@{EditProfileUserViewModel.user.phone}"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -100,7 +130,7 @@
                             android:id="@+id/txt_profile_email_01"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{UserViewModel.user.email}"
+                            android:text="@{EditProfileUserViewModel.user.email}"
                             android:textColor="@color/colorPrimary"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -146,7 +176,10 @@
                         android:id="@+id/txt_profile_sex"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="end" />
+                        android:entries="@array/sex"
+                        android:gravity="end"
+                        android:selectedItemPosition="@={EditProfileUserViewModel.sexIdItemPosition}"
+                        android:textAlignment="textEnd" />
                 </LinearLayout>
                 <!--  End Sex         -->
 
@@ -169,7 +202,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:text="@={UserViewModel.user.dob}" />
+                        android:text="@={EditProfileUserViewModel.user.dob}" />
                 </LinearLayout>
                 <!--  End dob         -->
 
@@ -191,7 +224,10 @@
                         android:id="@+id/txt_profile_marital_status"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="end" />
+                        android:entries="@array/marital_status"
+                        android:gravity="end"
+                        android:selectedItemPosition="@={EditProfileUserViewModel.maritalIdItemPosition}"
+                        android:textAlignment="textEnd" />
                 </LinearLayout>
                 <!--  End marital status         -->
 
@@ -214,7 +250,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:text="@{UserViewModel.user.email}" />
+                        android:text="@={EditProfileUserViewModel.user.email}" />
                 </LinearLayout>
                 <!--  End Email         -->
 
@@ -237,7 +273,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:text="@={UserViewModel.user.phone}" />
+                        android:text="@={EditProfileUserViewModel.user.phone}" />
                 </LinearLayout>
                 <!--  End Phone         -->
 
@@ -260,7 +296,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:text="@={UserViewModel.user.address}" />
+                        android:text="@={EditProfileUserViewModel.user.address}" />
                 </LinearLayout>
                 <!--  End Address         -->
 
@@ -305,7 +341,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:text="@={UserViewModel.user.career_goals.position}" />
+                        android:text="@={EditProfileUserViewModel.user.career_goals.position}" />
                 </LinearLayout>
                 <!--  End Chức danh         -->
 
@@ -327,7 +363,10 @@
                         android:id="@+id/txt_profile_level"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="end" />
+                        android:entries="@array/career_level"
+                        android:gravity="end"
+                        android:selectedItemPosition="@={EditProfileUserViewModel.levelIdItemPosition}"
+                        android:textAlignment="textEnd" />
                 </LinearLayout>
                 <!--  End Cấp bậc         -->
 
@@ -350,7 +389,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:text="@{UserViewModel.user.career_goals.salary.toString()}" />
+                        android:text="@{EditProfileUserViewModel.user.career_goals.salary.toString()}" />
                 </LinearLayout>
                 <!--  End Mức lương         -->
 
@@ -372,7 +411,10 @@
                         android:id="@+id/txt_profile_career_category"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="end" />
+                        android:entries="@array/career_category"
+                        android:gravity="end"
+                        android:selectedItemPosition="@={EditProfileUserViewModel.careerCategoryIdItemPosition}"
+                        android:textAlignment="textEnd" />
                 </LinearLayout>
                 <!--  End Ngành nghề         -->
 
@@ -395,7 +437,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:text="@={UserViewModel.user.career_goals.address}" />
+                        android:text="@={EditProfileUserViewModel.user.career_goals.address}" />
                 </LinearLayout>
                 <!--  End Địa điểm làm việc         -->
 
@@ -440,7 +482,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:text="@={`` + UserViewModel.user.experience.total_years}" />
+                        android:text="@={`` + EditProfileUserViewModel.user.experience.total_years}" />
                 </LinearLayout>
                 <!--  End Chức danh         -->
 
@@ -462,7 +504,10 @@
                         android:id="@+id/txt_profile_current_level"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="end" />
+                        android:entries="@array/career_level"
+                        android:gravity="end"
+                        android:selectedItemPosition="@={EditProfileUserViewModel.currentLevelIdItemPosition}"
+                        android:textAlignment="textEnd" />
                 </LinearLayout>
                 <!--  End Cấp bậc hiện tại        -->
 
@@ -488,6 +533,16 @@
                         android:id="@+id/recyclerview_profile_work_progress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/btn_profile_add_work_progress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:text="Thêm"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold" />
                 </LinearLayout>
                 <!--  End Quá trình làm việc         -->
 
@@ -533,7 +588,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:text="@={UserViewModel.user.education.degree}" />
+                        android:text="@={EditProfileUserViewModel.user.education.degree}" />
                 </LinearLayout>
                 <!--  End Bằng cấp         -->
 
@@ -553,17 +608,29 @@
                         android:text="Ngôn ngữ" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/txt_profile_language"
+                        android:id="@+id/recyclerview_profile_language"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end" />
+
                 </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_profile_add_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@null"
+                    android:text="Thêm"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
                 <!--  End Ngôn ngữ        -->
 
-                <!--  Quá trình làm việc       -->
+                <!--  Người tham khảo       -->
                 <LinearLayout
+                    android:id="@+id/layout_profile_reference"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@drawable/header"
                     android:gravity="center_vertical"
                     android:orientation="vertical"
@@ -572,18 +639,30 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Quá trình làm việc"
+                        android:text="Người tham khảo"
                         android:textAllCaps="true"
                         android:textColor="@color/colorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerview_profile_language"
+                    <TextView
+                        android:id="@+id/txt_profile_reference"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@{EditProfileUserViewModel.user.references.toString()}" />
+
+                    <Button
+                        android:id="@+id/btn_profile_add_reference"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:text="Thêm"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold" />
                 </LinearLayout>
-                <!--  End Quá trình làm việc         -->
+                <!--  End Người tham khảo         -->
 
 
             </LinearLayout>
