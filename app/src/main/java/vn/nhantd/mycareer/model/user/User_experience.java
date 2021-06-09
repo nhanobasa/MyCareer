@@ -1,15 +1,15 @@
 package vn.nhantd.mycareer.model.user;
 
-import org.bson.types.ObjectId;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class User_experience implements Serializable {
     private String current_level = "";
     private Integer total_years = 0;
 
-    private List<ObjectId> work_progress;
+    private List<String> work_progress = new ArrayList<>();
 
     // Standard getters & setters
     public String getCurrent_level() {
@@ -28,11 +28,11 @@ public class User_experience implements Serializable {
         this.total_years = total_years;
     }
 
-    public List<ObjectId> getWork_progress() {
+    public List<String> getWork_progress() {
         return work_progress;
     }
 
-    public void setWork_progress(List<ObjectId> work_progress) {
+    public void setWork_progress(List<String> work_progress) {
         this.work_progress = work_progress;
     }
 }

@@ -25,7 +25,7 @@ public class ProfileUserViewModel extends ViewModel {
     public ProfileUserViewModel() {
         // get User from api
         User currentUser = FirebaseAuthentication.getProfileUser();
-        ApiService.apiService.getUser(currentUser).enqueue(new Callback<User>() {
+        ApiService.apiService.getUser(currentUser.get_id()).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 Log.d(TAG, "get user from api successful");

@@ -3,9 +3,9 @@ package vn.nhantd.mycareer.model.user;
 import java.io.Serializable;
 
 public class User_references implements Serializable {
-    private String email;
-    private String name;
-    private String phone;
+    private String email = "";
+    private String name = "";
+    private String phone = "";
     // Standard getters & setters
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }

@@ -4,8 +4,6 @@ package vn.nhantd.mycareer.api;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.bson.types.ObjectId;
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -37,7 +35,7 @@ public interface ApiService {
             .build();
 
     ApiService apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.30.60:10399/mycareer/api/v1/")
+            .baseUrl("http://192.168.1.100:10399/mycareer/api/v1/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
@@ -47,12 +45,12 @@ public interface ApiService {
     @POST("user/add")
     Call<User> createUsr(@Body User user);
 
-    @POST("user/profile")
-    Call<User> getUser(@Body User user);
+    @GET("user/profile")
+    Call<User> getUser(@Query("id") String _id);
 
     @GET("user/work_progress")
     Call<List<WorkProgress>> getAllWorkProgressOfUser(@Query("user_id") String user_id);
 
     @PUT("user/{id}")
-    Call<String> updateUser(@Path("id") ObjectId _id, @Body User user);
+    Call<String> updateUser(@Path("id") String _id, @Body User user);
 }

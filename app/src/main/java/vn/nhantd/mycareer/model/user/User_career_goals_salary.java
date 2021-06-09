@@ -3,9 +3,9 @@ package vn.nhantd.mycareer.model.user;
 import java.io.Serializable;
 
 public class User_career_goals_salary implements Serializable {
-    private String currency_unit;
-    private Double from_salary;
-    private Double to_salary;
+    private String currency_unit = "";
+    private Double from_salary = 0d;
+    private Double to_salary = 0d;
 
     // Standard getters & setters
     public String getCurrency_unit() {
@@ -30,5 +30,10 @@ public class User_career_goals_salary implements Serializable {
 
     public void setTo_salary(Double to_salary) {
         this.to_salary = to_salary;
+    }
+
+    @Override
+    public String toString() {
+        return from_salary + " - " + to_salary + " " + currency_unit;
     }
 }

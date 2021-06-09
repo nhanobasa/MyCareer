@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,10 +21,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import vn.nhantd.mycareer.adapter.LanguageAdapter;
+import vn.nhantd.mycareer.adapter.WorkProgressAdapter;
 import vn.nhantd.mycareer.api.ApiService;
 import vn.nhantd.mycareer.databinding.ActivityEditProfileUserBinding;
-import vn.nhantd.mycareer.adapter.WorkProgressAdapter;
 import vn.nhantd.mycareer.model.user.User;
+import vn.nhantd.mycareer.model.user.User_career_goals;
+import vn.nhantd.mycareer.model.user.User_experience;
 import vn.nhantd.mycareer.model.user.WorkProgress;
 import vn.nhantd.mycareer.ui.EditProfileUserViewModel;
 
@@ -35,6 +38,8 @@ public class EditProfileUserActivity extends AppCompatActivity {
     private List<WorkProgress> workProgressList;
     private WorkProgressAdapter adapter;
     private ActivityEditProfileUserBinding binding;
+    private User user;
+    private EditProfileUserViewModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +47,10 @@ public class EditProfileUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile_user);
 
         Intent intent = getIntent();
-        User user = (User) intent.getSerializableExtra("profile-user");
+        user = (User) intent.getSerializableExtra("profile-user");
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_profile_user);
-        EditProfileUserViewModel model = new EditProfileUserViewModel();
+        model = new EditProfileUserViewModel();
         model.setUser(user);
         Picasso.with(this).load(user.getPhotoUrl()).into(binding.imgProfile);
 
@@ -110,6 +115,7 @@ public class EditProfileUserActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         // set onClick for update button
         binding.btnProfileUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +130,9 @@ public class EditProfileUserActivity extends AppCompatActivity {
             }
         });
         binding.setEditProfileUserViewModel(model);
+
+        spinnerHandler();
+
 
     }
 
@@ -158,6 +167,103 @@ public class EditProfileUserActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<WorkProgress>> call, Throwable t) {
                 Log.d(TAG, "get all work progress of user fail!");
+            }
+        });
+    }
+
+    private void spinnerHandler() {
+        binding.txtProfileSex.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 0) return;
+                user = model.getUser();
+                String item = parent.getSelectedItem().toString();
+                user.setSex(item);
+                model.setUser(user);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        binding.txtProfileMaritalStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 0) return;
+                user = model.getUser();
+                String item = parent.getSelectedItem().toString();
+                user.setMarital_status(item);
+                model.setUser(user);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        binding.txtProfileLevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 0) return;
+                user = model.getUser();
+                String item = parent.getSelectedItem().toString();
+                User_career_goals careerGoals = user.getCareer_goals();
+                if (careerGoals == null) {
+                    careerGoals = new User_career_goals();
+                }
+                careerGoals.setLevel(item);
+                user.setCareer_goals(careerGoals);
+                model.setUser(user);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        binding.txtProfileCareerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 0) return;
+                user = model.getUser();
+                String item = parent.getSelectedItem().toString();
+                User_career_goals careerGoals = user.getCareer_goals();
+                if (careerGoals == null) {
+                    careerGoals = new User_career_goals();
+                }
+                careerGoals.setCategory(item);
+                user.setCareer_goals(careerGoals);
+                model.setUser(user);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        binding.txtProfileCurrentLevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 0) return;
+                user = model.getUser();
+                String item = parent.getSelectedItem().toString();
+                User_experience user_experience = user.getExperience();
+                if (user_experience == null) {
+                    user_experience = new User_experience();
+                }
+                user_experience.setCurrent_level(item);
+                user.setExperience(user_experience);
+                model.setUser(user);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
     }

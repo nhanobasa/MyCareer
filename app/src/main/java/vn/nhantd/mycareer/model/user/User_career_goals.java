@@ -3,10 +3,10 @@ package vn.nhantd.mycareer.model.user;
 import java.io.Serializable;
 
 public class User_career_goals implements Serializable {
-    private String address;
-    private String category;
-    private String level;
-    private String position;
+    private String address = "";
+    private String category = "";
+    private String level = "";
+    private String position = "";
     private User_career_goals_salary salary;
 
     // Standard getters & setters

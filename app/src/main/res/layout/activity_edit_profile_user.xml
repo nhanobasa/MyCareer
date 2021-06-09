@@ -178,7 +178,7 @@
                         android:layout_height="match_parent"
                         android:entries="@array/sex"
                         android:gravity="end"
-                        android:selectedItemPosition="@={EditProfileUserViewModel.sexIdItemPosition}"
+                        android:selectedItemPosition="@{EditProfileUserViewModel.sexIdItemPosition}"
                         android:textAlignment="textEnd" />
                 </LinearLayout>
                 <!--  End Sex         -->
@@ -226,7 +226,7 @@
                         android:layout_height="wrap_content"
                         android:entries="@array/marital_status"
                         android:gravity="end"
-                        android:selectedItemPosition="@={EditProfileUserViewModel.maritalIdItemPosition}"
+                        android:selectedItemPosition="@{EditProfileUserViewModel.maritalIdItemPosition}"
                         android:textAlignment="textEnd" />
                 </LinearLayout>
                 <!--  End marital status         -->
@@ -365,7 +365,7 @@
                         android:layout_height="wrap_content"
                         android:entries="@array/career_level"
                         android:gravity="end"
-                        android:selectedItemPosition="@={EditProfileUserViewModel.levelIdItemPosition}"
+                        android:selectedItemPosition="@{EditProfileUserViewModel.levelIdItemPosition}"
                         android:textAlignment="textEnd" />
                 </LinearLayout>
                 <!--  End Cấp bậc         -->
@@ -413,7 +413,7 @@
                         android:layout_height="wrap_content"
                         android:entries="@array/career_category"
                         android:gravity="end"
-                        android:selectedItemPosition="@={EditProfileUserViewModel.careerCategoryIdItemPosition}"
+                        android:selectedItemPosition="@{EditProfileUserViewModel.careerCategoryIdItemPosition}"
                         android:textAlignment="textEnd" />
                 </LinearLayout>
                 <!--  End Ngành nghề         -->
@@ -506,7 +506,7 @@
                         android:layout_height="wrap_content"
                         android:entries="@array/career_level"
                         android:gravity="end"
-                        android:selectedItemPosition="@={EditProfileUserViewModel.currentLevelIdItemPosition}"
+                        android:selectedItemPosition="@{EditProfileUserViewModel.currentLevelIdItemPosition}"
                         android:textAlignment="textEnd" />
                 </LinearLayout>
                 <!--  End Cấp bậc hiện tại        -->

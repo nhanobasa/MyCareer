@@ -1,6 +1,7 @@
 package vn.nhantd.mycareer.model.user;
 
-import org.bson.types.ObjectId;
+
+import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
@@ -13,29 +14,30 @@ import lombok.Data;
 @Builder
 public class User implements Serializable {
 
-    private ObjectId _id;
-    private String _partition;
-    private String address;
+    @SerializedName("id")
+    private String _id = "";
+    private String _partition = "";
+    private String address = "";
     private User_career_goals career_goals;
-    private String dob;
+    private String dob = "";
     private User_education education;
-    private String email;
+    private String email = "";
     private User_experience experience;
-    private String marital_status;
-    private String name;
-    private String phone;
-    private String photoUrl;
+    private String marital_status = "";
+    private String name = "";
+    private String phone = "";
+    private String photoUrl = "";
     private User_references references;
-    private String sex;
-    private String uid;
-    private String username;
+    private String sex = "";
+    private String uid = "";
+    private String username = "";
 
     // Standard getters & setters
-    public ObjectId get_id() {
+    public String get_id() {
         return _id;
     }
 
-    public void set_id(ObjectId _id) {
+    public void set_id(String _id) {
         this._id = _id;
     }
 
