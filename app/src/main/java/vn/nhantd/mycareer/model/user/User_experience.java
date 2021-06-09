@@ -2,9 +2,10 @@ package vn.nhantd.mycareer.model.user;
 
 import org.bson.types.ObjectId;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class User_experience {
+public class User_experience implements Serializable {
     private String current_level = "";
     private Integer total_years = 0;
 

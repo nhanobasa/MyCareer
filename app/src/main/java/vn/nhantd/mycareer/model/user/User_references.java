@@ -1,6 +1,8 @@
 package vn.nhantd.mycareer.model.user;
 
-public class User_references {
+import java.io.Serializable;
+
+public class User_references implements Serializable {
     private String email;
     private String name;
     private String phone;
@@ -11,4 +13,9 @@ public class User_references {
     public void setName(String name) { this.name = name; }
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
+
+    @Override
+    public String toString() {
+        return "Người tham khảo: " + name + " - " + phone + " - " + email;
+    }
 }

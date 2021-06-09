@@ -2,6 +2,8 @@ package vn.nhantd.mycareer.model.user;
 
 import org.bson.types.ObjectId;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +11,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @Builder
-public class User {
+public class User implements Serializable {
 
     private ObjectId _id;
     private String _partition;
@@ -156,4 +158,5 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
+
 }

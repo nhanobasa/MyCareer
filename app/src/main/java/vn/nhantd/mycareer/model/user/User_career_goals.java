@@ -1,10 +1,8 @@
 package vn.nhantd.mycareer.model.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import java.io.Serializable;
 
-public class User_career_goals {
+public class User_career_goals implements Serializable {
     private String address;
     private String category;
     private String level;

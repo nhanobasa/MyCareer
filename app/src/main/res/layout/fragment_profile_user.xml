@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -7,10 +8,10 @@
 
         <variable
             name="ProfileUserViewModel"
-            type="vn.nhantd.mycareer.fragment.ui.ProfileUserViewModel" />
+            type="vn.nhantd.mycareer.ui.ProfileUserViewModel" />
     </data>
 
-    <FrameLayout xmlns:tools="http://schemas.android.com/tools"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".fragment.ProfileUserFragment">
@@ -18,7 +19,7 @@
         <!-- TODO: Update blank fragment layout -->
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:id="@+id/layout_profile_general"
@@ -37,6 +38,36 @@
                     android:orientation="vertical"
                     android:padding="5dp"
                     android:paddingTop="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="-30dp"
+                        android:background="@null"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_profile_edit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:background="@null"
+                            android:text="Chỉnh sửa"
+                            android:textColor="#870115" />
+
+                        <Button
+                            android:id="@+id/btn_profile_share"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="right"
+                            android:layout_marginEnd="-2dp"
+                            android:background="@null"
+                            android:text="Chia sẻ"
+                            android:textColor="@color/colorPrimary" />
+
+
+                    </RelativeLayout>
 
                     <ImageView
                         android:id="@+id/img_profile"
@@ -58,7 +89,7 @@
                         android:id="@+id/txt_profile_position_01"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Senior"
+                        android:text="@{ProfileUserViewModel.user.career_goals.position}"
                         android:textColor="@color/colorPrimary"
                         android:textStyle="bold" />
 
@@ -150,7 +181,8 @@
                             android:id="@+id/txt_profile_sex"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="end" />
+                            android:gravity="end"
+                            android:text="@{ProfileUserViewModel.user.sex}" />
                     </LinearLayout>
                     <!--  End Sex         -->
 
@@ -541,7 +573,8 @@
                             android:id="@+id/txt_profile_degree"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="end" />
+                            android:gravity="end"
+                            android:text="@{ProfileUserViewModel.user.education.degree}" />
                     </LinearLayout>
                     <!--  End Bằng cấp         -->
 
@@ -568,8 +601,9 @@
                     </LinearLayout>
                     <!--  End Ngôn ngữ        -->
 
-                    <!--  Quá trình làm việc       -->
+                    <!--  Người tham khảo       -->
                     <LinearLayout
+                        android:id="@+id/layout_profile_reference"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:background="@drawable/header"
@@ -580,22 +614,26 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Quá trình làm việc"
+                            android:text="Người tham khảo"
                             android:textAllCaps="true"
                             android:textColor="@color/colorPrimary"
                             android:textSize="12sp"
                             android:textStyle="bold" />
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recyclerview_profile_language"
+                        <TextView
+                            android:id="@+id/txt_profile_reference"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            android:text="@{ProfileUserViewModel.user.references.toString()}" />
+
                     </LinearLayout>
-                    <!--  End Quá trình làm việc         -->
+                    <!--  End Người tham khảo         -->
 
 
                 </LinearLayout>
                 <!--  End Layout profile - kinh nghiệm  -->
+
 
             </LinearLayout>
 

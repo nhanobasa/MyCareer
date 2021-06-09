@@ -1,5 +1,6 @@
 package vn.nhantd.mycareer.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,11 +24,12 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import vn.nhantd.mycareer.EditProfileUserActivity;
 import vn.nhantd.mycareer.R;
 import vn.nhantd.mycareer.api.ApiService;
 import vn.nhantd.mycareer.databinding.FragmentProfileUserBinding;
 import vn.nhantd.mycareer.fragment.adapter.WorkProgressAdapter;
-import vn.nhantd.mycareer.fragment.ui.ProfileUserViewModel;
+import vn.nhantd.mycareer.ui.ProfileUserViewModel;
 import vn.nhantd.mycareer.model.user.User;
 import vn.nhantd.mycareer.model.user.WorkProgress;
 
@@ -41,6 +43,7 @@ public class ProfileUserFragment extends Fragment {
     private User user;
     List<WorkProgress> workProgressList = new ArrayList<>();
     private WorkProgressAdapter adapter;
+    ProfileUserViewModel model;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -92,6 +95,14 @@ public class ProfileUserFragment extends Fragment {
 
 //        binding = FragmentProfileUserBinding.inflate(inflater, container, false);
         binding = FragmentProfileUserBinding.bind(v);
+        binding.btnProfileEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), EditProfileUserActivity.class);
+                intent.putExtra("profile-user", model.getUser().getValue());
+                startActivityForResult(intent, 1);
+            }
+        });
 
 
         return binding.getRoot();
@@ -122,7 +133,7 @@ public class ProfileUserFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ProfileUserViewModel model = new ViewModelProvider(this).get(ProfileUserViewModel.class);
+        model = new ViewModelProvider(this).get(ProfileUserViewModel.class);
 
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);

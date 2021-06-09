@@ -1,4 +1,4 @@
-package vn.nhantd.mycareer.fragment.ui;
+package vn.nhantd.mycareer.ui;
 
 import android.util.Log;
 
@@ -39,6 +39,10 @@ public class ProfileUserViewModel extends ViewModel {
         });
 
 
+    }
+
+    public void setUser(User user) {
+        muser.setValue(user);
     }
 
 }

@@ -1,6 +1,8 @@
 package vn.nhantd.mycareer.model.user;
 
-public class User_career_goals_salary {
+import java.io.Serializable;
+
+public class User_career_goals_salary implements Serializable {
     private String currency_unit;
     private Double from_salary;
     private Double to_salary;
