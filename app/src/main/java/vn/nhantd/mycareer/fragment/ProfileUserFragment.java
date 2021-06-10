@@ -167,13 +167,17 @@ public class ProfileUserFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==1){
-            if (resultCode==Activity.RESULT_OK){
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
                 User result = (User) data.getSerializableExtra(EditProfileUserActivity.EXTRA_DATA);
                 ApiService.apiService.updateUser(result.get_id(), result).enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
-                        Log.d(TAG, "update user successful!");
+                        if (response.body().equals("OK")) {
+                            Log.d(TAG, "update user successful!");
+                        } else {
+                            Log.d(TAG, "update user failure!");
+                        }
                     }
 
                     @Override

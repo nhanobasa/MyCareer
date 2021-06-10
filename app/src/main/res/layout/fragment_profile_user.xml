@@ -74,8 +74,7 @@
                         android:id="@+id/img_profile"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:layout_marginBottom="10dp"
-                         />
+                        android:layout_marginBottom="10dp" />
 
                     <TextView
                         android:id="@+id/txt_profile_name"
@@ -168,7 +167,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:background="@drawable/header"
+                        android:background="@drawable/border_set_bottom"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:padding="10dp">
@@ -191,7 +190,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:background="@drawable/header"
+                        android:background="@drawable/border_set_bottom"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:padding="10dp">
@@ -214,7 +213,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:background="@drawable/header"
+                        android:background="@drawable/border_set_bottom"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:padding="10dp">
@@ -237,7 +236,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:background="@drawable/header"
+                        android:background="@drawable/border_set_bottom"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:padding="10dp">
@@ -260,7 +259,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:background="@drawable/header"
+                        android:background="@drawable/border_set_bottom"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:padding="10dp">
@@ -283,7 +282,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:background="@drawable/header"
+                        android:background="@drawable/border_set_bottom"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:padding="10dp">
@@ -328,7 +327,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:background="@drawable/header"
+                        android:background="@drawable/border_set_bottom"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:padding="10dp">
@@ -351,7 +350,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:background="@drawable/header"
+                        android:background="@drawable/border_set_bottom"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:padding="10dp">
@@ -374,7 +373,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:background="@drawable/header"
+                        android:background="@drawable/border_set_bottom"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:padding="10dp">
@@ -397,7 +396,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:background="@drawable/header"
+                        android:background="@drawable/border_set_bottom"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:padding="10dp">
@@ -420,7 +419,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:background="@drawable/header"
+                        android:background="@drawable/border_set_bottom"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:padding="10dp">
@@ -465,7 +464,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:background="@drawable/header"
+                        android:background="@drawable/border_set_bottom"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:padding="10dp">
@@ -488,7 +487,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:background="@drawable/header"
+                        android:background="@drawable/border_set_bottom"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:padding="10dp">
@@ -511,7 +510,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/header"
+                        android:background="@drawable/border_set_bottom"
                         android:gravity="center_vertical"
                         android:orientation="vertical"
                         android:padding="10dp">
@@ -560,7 +559,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:background="@drawable/header"
+                        android:background="@drawable/border_set_bottom"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:padding="10dp">
@@ -583,7 +582,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/header"
+                        android:background="@drawable/border_set_bottom"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:padding="10dp">
@@ -607,7 +606,7 @@
                         android:id="@+id/layout_profile_reference"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:background="@drawable/header"
+                        android:background="@drawable/border_set_bottom"
                         android:gravity="center_vertical"
                         android:orientation="vertical"
                         android:padding="10dp">

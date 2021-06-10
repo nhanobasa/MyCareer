@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,6 +27,7 @@ import vn.nhantd.mycareer.api.ApiService;
 import vn.nhantd.mycareer.databinding.ActivityEditProfileUserBinding;
 import vn.nhantd.mycareer.model.user.User;
 import vn.nhantd.mycareer.model.user.User_career_goals;
+import vn.nhantd.mycareer.model.user.User_career_goals_salary;
 import vn.nhantd.mycareer.model.user.User_experience;
 import vn.nhantd.mycareer.model.user.WorkProgress;
 import vn.nhantd.mycareer.ui.EditProfileUserViewModel;
@@ -106,30 +108,9 @@ public class EditProfileUserActivity extends AppCompatActivity {
         binding.recyclerviewProfileWorkProgress.setLayoutManager(new LinearLayoutManager(this));
         getAllLanguage(user);
 
-
-        // set onClick for back button
-        binding.btnProfileEditBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setResult(Activity.RESULT_CANCELED);
-                finish();
-            }
-        });
-
-        // set onClick for update button
-        binding.btnProfileUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent data = new Intent();
-
-                // thực hiện update user
-                User user = model.getUser();
-                data.putExtra(EXTRA_DATA, user);
-                setResult(Activity.RESULT_OK, data);
-                finish();
-            }
-        });
         binding.setEditProfileUserViewModel(model);
+
+        clickHandler();
 
         spinnerHandler();
 
@@ -175,7 +156,7 @@ public class EditProfileUserActivity extends AppCompatActivity {
         binding.txtProfileSex.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 0) return;
+                if (position == 0) return;
                 user = model.getUser();
                 String item = parent.getSelectedItem().toString();
                 user.setSex(item);
@@ -191,7 +172,7 @@ public class EditProfileUserActivity extends AppCompatActivity {
         binding.txtProfileMaritalStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 0) return;
+                if (position == 0) return;
                 user = model.getUser();
                 String item = parent.getSelectedItem().toString();
                 user.setMarital_status(item);
@@ -207,7 +188,7 @@ public class EditProfileUserActivity extends AppCompatActivity {
         binding.txtProfileLevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 0) return;
+                if (position == 0) return;
                 user = model.getUser();
                 String item = parent.getSelectedItem().toString();
                 User_career_goals careerGoals = user.getCareer_goals();
@@ -228,7 +209,7 @@ public class EditProfileUserActivity extends AppCompatActivity {
         binding.txtProfileCareerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 0) return;
+                if (position == 0) return;
                 user = model.getUser();
                 String item = parent.getSelectedItem().toString();
                 User_career_goals careerGoals = user.getCareer_goals();
@@ -249,7 +230,7 @@ public class EditProfileUserActivity extends AppCompatActivity {
         binding.txtProfileCurrentLevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 0) return;
+                if (position == 0) return;
                 user = model.getUser();
                 String item = parent.getSelectedItem().toString();
                 User_experience user_experience = user.getExperience();
@@ -268,4 +249,56 @@ public class EditProfileUserActivity extends AppCompatActivity {
         });
     }
 
+    private void clickHandler() {
+        // set onClick for back button
+        binding.btnProfileEditBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setResult(Activity.RESULT_CANCELED);
+                finish();
+            }
+        });
+
+        // set onClick for update button
+        binding.btnProfileUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent data = new Intent();
+
+                // thực hiện update user
+                User user = model.getUser();
+                data.putExtra(EXTRA_DATA, user);
+                setResult(Activity.RESULT_OK, data);
+                finish();
+            }
+        });
+
+        // set onClick for txt salary
+        binding.txtProfileSalary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditProfileUserActivity.this, UpdateSalaryActivity.class);
+                intent.putExtra("profile-salary", user.getCareer_goals().getSalary());
+                startActivityForResult(intent, 1);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                User_career_goals_salary salary = (User_career_goals_salary) data.getSerializableExtra(UpdateSalaryActivity.EXTRA_DATA);
+                User user = model.getUser();
+                User_career_goals careerGoals = user.getCareer_goals();
+                careerGoals.setSalary(salary);
+
+                user.setCareer_goals(careerGoals);
+                model.setUser(user);
+                binding.txtProfileSalary.setText(model.getUser().getCareer_goals().getSalary().toString());
+            }
+        }
+    }
 }
