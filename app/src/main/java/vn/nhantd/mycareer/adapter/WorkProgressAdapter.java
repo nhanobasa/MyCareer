@@ -42,7 +42,7 @@ public class WorkProgressAdapter extends RecyclerView.Adapter<WorkProgressAdapte
     public WorkProgressViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         Log.i(TAG, "Creating view holder");
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View v = inflater.inflate(R.layout.work_progress_cart_item, parent, false);
+        View v = inflater.inflate(R.layout.work_progress_item, parent, false);
         return new WorkProgressViewHolder(v);
     }
 

@@ -34,6 +34,8 @@ public class Salary implements Serializable {
 
     @Override
     public String toString() {
+        if (currency_unit.equals("Thỏa thuận"))
+            return currency_unit;
         return from_salary + " - " + to_salary + " " + currency_unit;
     }
 }

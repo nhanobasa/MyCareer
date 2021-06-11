@@ -17,6 +17,7 @@ public class Employer {
     private String contact = null;
     private String description = null;
     private String status = null;
+    private String photoUrl = null;
     private List<Transaction> transactions = null;
     private List<String> jobs = null;
 
@@ -114,5 +115,13 @@ public class Employer {
 
     public void setJobs(List<String> jobs) {
         this.jobs = jobs;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 }

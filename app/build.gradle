@@ -79,7 +79,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
     // https://mvnrepository.com/artifact/com.squareup.picasso/picasso
-    implementation group: 'com.squareup.picasso', name: 'picasso', version: '2.5.2'
+    implementation group: 'com.squareup.picasso', name: 'picasso', version: '2.71828'
 
 
 }

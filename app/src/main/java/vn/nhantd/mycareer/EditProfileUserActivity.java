@@ -54,7 +54,7 @@ public class EditProfileUserActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_profile_user);
         model = new EditProfileUserViewModel();
         model.setUser(user);
-        Picasso.with(this).load(user.getPhotoUrl()).into(binding.imgProfile);
+        Picasso.get().load(user.getPhotoUrl()).into(binding.imgProfile);
 
         // spinner giới tính
         ArrayAdapter<String> arrayAdapterSex = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item

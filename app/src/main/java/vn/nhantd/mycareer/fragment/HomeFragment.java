@@ -1,15 +1,22 @@
 package vn.nhantd.mycareer.fragment;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import java.util.List;
+
 import vn.nhantd.mycareer.R;
+import vn.nhantd.mycareer.adapter.TopJobAdapter;
 import vn.nhantd.mycareer.databinding.FragmentHomeBinding;
+import vn.nhantd.mycareer.model.job.Job;
+import vn.nhantd.mycareer.ui.HomeViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,6 +25,8 @@ import vn.nhantd.mycareer.databinding.FragmentHomeBinding;
  */
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
+    private HomeViewModel model;
+    private TopJobAdapter adapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,10 +72,27 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
+        View v = inflater.inflate(R.layout.fragment_home, container, false);
+        binding = FragmentHomeBinding.bind(v);
 
-        return view;
+        model = new ViewModelProvider(this).get(HomeViewModel.class);
+
+        // Xử lý recycler view cho phần gợi ý top job
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        llm.setOrientation(LinearLayoutManager.HORIZONTAL);
+        binding.recyclerviewRecommendedTopJob.setLayoutManager(llm);
+
+        model.getTopJob().observe(this, new Observer<List<Job>>() {
+            @Override
+            public void onChanged(List<Job> jobs) {
+                if (jobs != null) {
+                    adapter = new TopJobAdapter(getContext(), jobs);
+                    binding.recyclerviewRecommendedTopJob.setAdapter(adapter);
+                }
+            }
+        });
+
+        return binding.getRoot();
     }
 
     @Override

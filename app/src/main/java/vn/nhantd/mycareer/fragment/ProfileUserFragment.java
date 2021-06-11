@@ -30,9 +30,9 @@ import vn.nhantd.mycareer.R;
 import vn.nhantd.mycareer.adapter.WorkProgressAdapter;
 import vn.nhantd.mycareer.api.ApiService;
 import vn.nhantd.mycareer.databinding.FragmentProfileUserBinding;
-import vn.nhantd.mycareer.ui.ProfileUserViewModel;
 import vn.nhantd.mycareer.model.user.User;
 import vn.nhantd.mycareer.model.user.WorkProgress;
+import vn.nhantd.mycareer.ui.ProfileUserViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -105,6 +105,9 @@ public class ProfileUserFragment extends Fragment {
             }
         });
 
+        // Tạo view model
+        model = new ViewModelProvider(this).get(ProfileUserViewModel.class);
+
 
         return binding.getRoot();
     }
@@ -134,7 +137,6 @@ public class ProfileUserFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        model = new ViewModelProvider(this).get(ProfileUserViewModel.class);
 
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -146,7 +148,7 @@ public class ProfileUserFragment extends Fragment {
                 if (user != null) {
                     binding.setProfileUserViewModel(model);
                     if (user.getPhotoUrl() != null)
-                        Picasso.with(getContext()).load(user.getPhotoUrl()).into(binding.imgProfile);
+                        Picasso.get().load(user.getPhotoUrl()).into(binding.imgProfile);
                     adapter = new WorkProgressAdapter(getContext(), workProgressList);
                     binding.recyclerviewProfileWorkProgress.setAdapter(adapter);
                     //get list work progress

@@ -16,6 +16,9 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import vn.nhantd.mycareer.model.employeer.Employer;
+import vn.nhantd.mycareer.model.job.CareerCategory;
+import vn.nhantd.mycareer.model.job.Job;
 import vn.nhantd.mycareer.model.user.User;
 import vn.nhantd.mycareer.model.user.WorkProgress;
 
@@ -53,4 +56,16 @@ public interface ApiService {
 
     @POST("user/{id}")
     Call<String> updateUser(@Path("id") String _id, @Body User user);
+
+    @GET("category/top")
+    Call<List<CareerCategory>> getTopCareerCategory();
+
+    @GET("job/all")
+    Call<List<Job>> getAllJobs(@Query("limit") Integer limit);
+
+    @GET("job/all/{user_id}")
+    Call<List<Job>> getJobForUser( @Path("user_id") String _id, @Query("limit") Integer limit);
+
+    @GET("employer/profile")
+    Call<Employer> getEmployer(@Query("id") String _id);
 }
