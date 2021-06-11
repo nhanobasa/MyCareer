@@ -7,7 +7,7 @@ public class User_career_goals implements Serializable {
     private String category = "";
     private String level = "";
     private String position = "";
-    private User_career_goals_salary salary;
+    private Salary salary;
 
     // Standard getters & setters
     public String getAddress() {
@@ -42,11 +42,11 @@ public class User_career_goals implements Serializable {
         this.position = position;
     }
 
-    public User_career_goals_salary getSalary() {
+    public Salary getSalary() {
         return salary;
     }
 
-    public void setSalary(User_career_goals_salary salary) {
+    public void setSalary(Salary salary) {
         this.salary = salary;
     }
 }

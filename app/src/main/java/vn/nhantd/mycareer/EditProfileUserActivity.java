@@ -27,7 +27,7 @@ import vn.nhantd.mycareer.api.ApiService;
 import vn.nhantd.mycareer.databinding.ActivityEditProfileUserBinding;
 import vn.nhantd.mycareer.model.user.User;
 import vn.nhantd.mycareer.model.user.User_career_goals;
-import vn.nhantd.mycareer.model.user.User_career_goals_salary;
+import vn.nhantd.mycareer.model.user.Salary;
 import vn.nhantd.mycareer.model.user.User_experience;
 import vn.nhantd.mycareer.model.user.WorkProgress;
 import vn.nhantd.mycareer.ui.EditProfileUserViewModel;
@@ -290,7 +290,7 @@ public class EditProfileUserActivity extends AppCompatActivity {
 
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
-                User_career_goals_salary salary = (User_career_goals_salary) data.getSerializableExtra(UpdateSalaryActivity.EXTRA_DATA);
+                Salary salary = (Salary) data.getSerializableExtra(UpdateSalaryActivity.EXTRA_DATA);
                 User user = model.getUser();
                 User_career_goals careerGoals = user.getCareer_goals();
                 careerGoals.setSalary(salary);

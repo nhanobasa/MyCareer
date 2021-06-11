@@ -7,9 +7,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 import org.bson.types.ObjectId;
 
+import vn.nhantd.mycareer.model.user.Salary;
 import vn.nhantd.mycareer.model.user.User;
 import vn.nhantd.mycareer.model.user.User_career_goals;
-import vn.nhantd.mycareer.model.user.User_career_goals_salary;
 import vn.nhantd.mycareer.model.user.User_education;
 import vn.nhantd.mycareer.model.user.User_experience;
 import vn.nhantd.mycareer.model.user.User_references;
@@ -58,7 +58,7 @@ public class FirebaseAuthentication {
 
             u.setExperience(new User_experience());
             User_career_goals careerGoals = new User_career_goals();
-            careerGoals.setSalary(new User_career_goals_salary());
+            careerGoals.setSalary(new Salary());
             u.setCareer_goals(careerGoals);
             u.setEducation(new User_education());
             u.setReferences(new User_references());

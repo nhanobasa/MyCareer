@@ -13,7 +13,7 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import vn.nhantd.mycareer.model.user.User_career_goals_salary;
+import vn.nhantd.mycareer.model.user.Salary;
 
 public class UpdateSalaryActivity extends AppCompatActivity {
 
@@ -24,7 +24,7 @@ public class UpdateSalaryActivity extends AppCompatActivity {
     EditText txtSalaryTo;
     ImageButton btnBack;
     Button btnUpdate;
-    private User_career_goals_salary salary;
+    private Salary salary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class UpdateSalaryActivity extends AppCompatActivity {
 
         // get data from edit activity
         Intent intent = getIntent();
-        salary = (User_career_goals_salary) intent.getSerializableExtra("profile-salary");
+        salary = (Salary) intent.getSerializableExtra("profile-salary");
 
         // Khởi tạo view
         initView();
