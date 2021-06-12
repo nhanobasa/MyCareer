@@ -1,14 +1,22 @@
 package vn.nhantd.mycareer.fragment;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import java.util.List;
+
 import vn.nhantd.mycareer.R;
+import vn.nhantd.mycareer.adapter.EmployerAdapter;
+import vn.nhantd.mycareer.databinding.FragmentJobBinding;
+import vn.nhantd.mycareer.model.employeer.Employer;
+import vn.nhantd.mycareer.ui.EmployerViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +24,10 @@ import vn.nhantd.mycareer.R;
  * create an instance of this fragment.
  */
 public class JobFragment extends Fragment {
+    private FragmentJobBinding binding;
+    private EmployerViewModel model;
+    private EmployerAdapter adapter;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +73,31 @@ public class JobFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_job, container, false);
+        View v = inflater.inflate(R.layout.fragment_job, container, false);
+        binding = FragmentJobBinding.bind(v);
+        model = new ViewModelProvider(this).get(EmployerViewModel.class);
+
+        // Xử lý recycler view cho phần gợi ý top job
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        binding.recyclerviewTopEmployer.setLayoutManager(llm);
+
+        model.getmEmployer().observe(this, new Observer<List<Employer>>() {
+            @Override
+            public void onChanged(List<Employer> employers) {
+                if (employers != null) {
+                    adapter = new EmployerAdapter(getContext(), employers);
+                    binding.recyclerviewTopEmployer.setAdapter(adapter);
+                }
+            }
+        });
+
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

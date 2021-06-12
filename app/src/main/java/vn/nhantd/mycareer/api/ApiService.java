@@ -64,12 +64,22 @@ public interface ApiService {
     @GET("job/all")
     Call<List<Job>> getAllJobs(@Query("limit") Integer limit);
 
+    @GET("employer/job/{id}")
+    Call<List<Job>> getAllJobsOfEmployer(@Path("id") String employer_id, @Query("status") String status, @Query("limit") Integer limit);
+
     @GET("job/all/{user_id}")
     Call<List<Job>> getJobForUser(@Path("user_id") String _id, @Query("limit") Integer limit);
 
     @GET("employer/profile")
     Call<Employer> getEmployer(@Query("id") String _id);
 
+    @GET("employer/all")
+    Call<List<Employer>> getAllEmployer(@Query("limit") Integer limit);
+
     @POST("job/transaction/{id}")
     Call<String> setJobTransaction(@Path("id") String job_id, @Body Transaction transaction);
+
+    @POST("employer/transaction/{id}")
+    Call<String> setEmployerTransaction(@Path("id") String employer_id, @Body Transaction transaction);
+
 }

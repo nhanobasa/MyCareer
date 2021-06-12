@@ -68,7 +68,7 @@ public class JobActivity extends AppCompatActivity {
             binding.btnJobApply.setTextColor(R.color.black);
         }
 
-        // Kiểm tra xem job này đẫ được lưu hay chưa
+        // Kiểm tra xem job này đẫ được thích hay hay chưa
         // get list transaction
         List<Transaction> transactionList = job.getTransactions();
         if (transactionList != null) {

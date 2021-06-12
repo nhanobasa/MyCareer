@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyCareer"
         android:usesCleartextTraffic="true">
-        <activity android:name=".JobActivity"></activity>
+        <activity android:name=".EmployerActivity"></activity>
+        <activity android:name=".JobActivity" />
         <activity android:name=".UpdateSalaryActivity" />
         <activity android:name=".EditProfileUserActivity" />
         <activity android:name=".ForgetPasswordActivity" />

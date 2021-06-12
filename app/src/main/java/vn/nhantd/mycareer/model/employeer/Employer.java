@@ -9,7 +9,7 @@ import vn.nhantd.mycareer.model.Transaction;
 
 
 public class Employer implements Serializable {
-    @SerializedName("id")
+    @SerializedName("_id")
     private String _id = null;
     private String _partition = "sync";
     private Long dt;
