@@ -4,11 +4,15 @@
     android:id="@+id/card_view_top_employer"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:layout_marginBottom="10dp"
+    android:layout_marginStart="3dp"
+    android:layout_marginEnd="1dp"
+    android:layout_marginBottom="8dp"
     android:background="@drawable/border_set_bottom"
     app:cardCornerRadius="15dp">
 
     <LinearLayout
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
@@ -21,7 +25,7 @@
             android:src="@drawable/ic_baseline_business_24" />
 
         <LinearLayout
-            android:layout_width="260dp"
+            android:layout_width="240dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical"
@@ -67,8 +71,8 @@
 
             <ImageButton
                 android:id="@+id/btn_like_employer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:src="@drawable/un_heart" />
         </LinearLayout>

@@ -60,6 +60,22 @@ public class TopJobAdapter extends RecyclerView.Adapter<TopJobAdapter.TopCategor
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull TopCategoryViewHolder holder, int position) {
+        switch (position) {
+            case 0:
+                holder.cardView.setBackgroundResource(R.drawable.border_set_bottom_top_1);
+                break;
+
+            case 1:
+                holder.cardView.setBackgroundResource(R.drawable.border_set_bottom_top_2);
+                break;
+
+            case 2:
+                holder.cardView.setBackgroundResource(R.drawable.border_set_bottom_top_3);
+                break;
+            default:
+                holder.cardView.setBackgroundResource(R.drawable.border_set_bottom);
+                break;
+        }
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +126,7 @@ public class TopJobAdapter extends RecyclerView.Adapter<TopJobAdapter.TopCategor
         return data.size();
     }
 
-    public class TopCategoryViewHolder extends RecyclerView.ViewHolder{
+    public class TopCategoryViewHolder extends RecyclerView.ViewHolder {
         ImageView imgCompany;
         TextView txtJobName;
         TextView txtCompanyName;

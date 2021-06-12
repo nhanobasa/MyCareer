@@ -13,7 +13,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class WorkProgress implements Serializable {
 
-    @SerializedName("id")
+    @SerializedName("_id")
     @Builder.Default
     private String _id = "";
     @Builder.Default

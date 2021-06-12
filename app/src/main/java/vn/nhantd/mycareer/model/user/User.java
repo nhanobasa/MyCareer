@@ -14,8 +14,8 @@ import lombok.Data;
 @Builder
 public class User implements Serializable {
 
-    @SerializedName("_id")
     @Builder.Default
+    @SerializedName("id")
     private String _id = "";
     @Builder.Default
     private String _partition = "";

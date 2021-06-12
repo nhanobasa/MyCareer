@@ -44,7 +44,7 @@ public class EmployerAdapter extends RecyclerView.Adapter<EmployerAdapter.Employ
     private Context context;
     private Employer employer;
     List<Employer> data;
-    private boolean checkSaveJob = false;
+    private boolean checkLike = false;
     private boolean checkLogin = FirebaseAuthentication.getCurrentUser() != null;
 
     public EmployerAdapter(Context context, List<Employer> data) {
@@ -78,9 +78,9 @@ public class EmployerAdapter extends RecyclerView.Adapter<EmployerAdapter.Employ
             Log.i(TAG, "Binding view holder: " + employer.getName());
 
 //        Kiểm tra xem người dùng đã quan tâm nhà cung cấp này hay chưa
-            checkLike(employer);
+            checkLike = checkLike(employer);
             // Nếu đã yêu thích thì đổi màu trái tim
-            if (checkSaveJob) {
+            if (checkLike) {
                 @SuppressLint("UseCompatLoadingForDrawables") Drawable img = context.getResources().getDrawable(R.drawable.heart);
                 img.setBounds(0, 0, 60, 60);
                 holder.btnLike.setImageDrawable(img);
@@ -110,8 +110,9 @@ public class EmployerAdapter extends RecyclerView.Adapter<EmployerAdapter.Employ
                     // check login, nếu chưa login -> Login Activity
                     checkLogin();
 
-                    checkSaveJob = !checkSaveJob;
-                    String transactionCode = checkSaveJob ? "like" : "unlike";
+                    checkLike = checkLike(employer);
+                    checkLike = !checkLike;
+                    String transactionCode = checkLike ? "like" : "unlike";
 
                     if (checkLogin) {
                         // Lấy _id của user
@@ -124,10 +125,15 @@ public class EmployerAdapter extends RecyclerView.Adapter<EmployerAdapter.Employ
                                 // Nếu cập nhật thành công
                                 if (response.body().equals("OK")) {
                                     // set icon
-                                    int icon = checkSaveJob ? R.drawable.heart : R.drawable.un_heart;
+                                    int icon = checkLike ? R.drawable.heart : R.drawable.un_heart;
                                     @SuppressLint("UseCompatLoadingForDrawables") Drawable img = context.getResources().getDrawable(icon);
                                     img.setBounds(0, 0, 60, 60);
                                     holder.btnLike.setImageDrawable(img);
+
+                                    employer.getTransactions().add(0, transaction);
+
+                                    long totalLike = calculateTotalLike(employer);
+                                    holder.txtTotalTransaction.setText("Lượt quan tâm: " + totalLike);
 
                                     Log.i(TAG, "Thay đổi trạng thái thành: " + transactionCode);
                                 } else {
@@ -169,19 +175,21 @@ public class EmployerAdapter extends RecyclerView.Adapter<EmployerAdapter.Employ
             });
 
 
-            // TÍNH TOÁN SỐ LƯỢT QUAN TÂM ĐẾN NHÀ TUYỂN DỤNG
-            //lọc lấy lượt yêu thích
-            List<Transaction> likeList = employer.getTransactions().stream()
-                    .filter(transaction -> transaction.getTransaction_code().equals("like"))
-                    .distinct()
-                    .collect(Collectors.toList());
+//            // TÍNH TOÁN SỐ LƯỢT QUAN TÂM ĐẾN NHÀ TUYỂN DỤNG
+//            //lọc lấy lượt yêu thích
+//            List<Transaction> likeList = employer.getTransactions().stream()
+//                    .filter(transaction -> transaction.getTransaction_code().equals("like"))
+//                    .distinct()
+//                    .collect(Collectors.toList());
+//
+//            // distinct theo user_id
+//            HashSet<Object> seen = new HashSet<>();
+//            likeList.removeIf(e -> !seen.add(e.getUser_id()));
+//
+//            // tính số lượt quan tâm
+//            int totalLike = likeList.size();
 
-            // distinct theo user_id
-            HashSet<Object> seen = new HashSet<>();
-            likeList.removeIf(e -> !seen.add(e.getUser_id()));
-
-            // tính số lượt quan tâm
-            int totalLike = likeList.size();
+            long totalLike = calculateTotalLike(employer);
             holder.txtTotalTransaction.setText("Lượt quan tâm: " + totalLike);
         }
 
@@ -214,9 +222,10 @@ public class EmployerAdapter extends RecyclerView.Adapter<EmployerAdapter.Employ
         }
     }
 
-    private void checkLike(Employer employer) {
+    private boolean checkLike(Employer employer) {
         // Kiểm tra xem employer này đẫ được thích hay hay chưa
         // get list transaction
+        boolean result = false;
         List<Transaction> transactionList = employer.getTransactions();
         if (transactionList != null) {
 
@@ -232,21 +241,22 @@ public class EmployerAdapter extends RecyclerView.Adapter<EmployerAdapter.Employ
             transactionList.sort(new Comparator<Transaction>() {
                 @Override
                 public int compare(Transaction o1, Transaction o2) {
-                    return o1.getDt() < o2.getDt() ? 1 : -1;
+                    return o2.getDt().compareTo(o1.getDt());
                 }
             });
 
             for (Transaction transaction : transactionList) {
                 if (transaction.getUser_id().equals(_id)) {
                     if (transaction.getTransaction_code().equals("like")) {
-                        checkSaveJob = true;
+                        result = true;
                     } else {
-                        checkSaveJob = false;
+                        result = false;
                     }
                     break;
                 }
             }
         }
+        return result;
     }
 
     private void checkLogin() {
@@ -255,5 +265,34 @@ public class EmployerAdapter extends RecyclerView.Adapter<EmployerAdapter.Employ
             context.startActivity(i);
 
         }
+    }
+
+    private long calculateTotalLike(Employer employer) {
+        // TÍNH TOÁN SỐ LƯỢT QUAN TÂM ĐẾN NHÀ TUYỂN DỤNG
+        //lọc lấy lượt yêu thích ??? lỗi chỗ này ???
+        List<Transaction> likeList = employer.getTransactions().stream()
+                .distinct()
+                .collect(Collectors.toList());
+
+        //sort by dt DESC
+        likeList.sort(new Comparator<Transaction>() {
+            @Override
+            public int compare(Transaction o1, Transaction o2) {
+                return o2.getDt().compareTo(o1.getDt());
+            }
+        });
+
+        // distinct theo user_id
+        HashSet<Object> seen = new HashSet<>();
+
+        // tính số lượt quan tâm
+        long totalLike = 0;
+        likeList.removeIf(e -> !seen.add(e.getUser_id()));
+        for (Transaction transaction : likeList) {
+            if (transaction.getTransaction_code().equals("like")) {
+                totalLike += 1;
+            }
+        }
+        return totalLike;
     }
 }

@@ -35,18 +35,19 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:layout_marginStart="10dp"
                         android:id="@+id/btn_back"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:background="@null"
                         android:contentDescription="Back"
-                        android:src="@drawable/ic_baseline_arrow_back_24" />
+                        android:src="@drawable/ic_baseline_arrow_back_with_24" />
 
                     <TextView
                         android:id="@+id/txt_activity_title"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="10dp"
                         android:gravity="center"
                         android:text="Thay đổi mức lương"
                         android:textColor="@color/white"
@@ -126,11 +127,11 @@
 
                         <TextView
                             android:id="@+id/txt_job_salary"
-                            android:drawablePadding="5dp"
-                            android:drawableStart="@drawable/ic_baseline_attach_money_24"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
+                            android:drawableStart="@drawable/ic_baseline_attach_money_24"
+                            android:drawablePadding="5dp"
                             android:gravity="center"
                             android:text="@{`Mức lương: ` + JobViewModel.job.salary.toString()}"
                             android:textColor="#F44336"
@@ -283,18 +284,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:padding="10dp">
 
             <Button
+                android:textColor="#F44336"
                 android:id="@+id/btn_job_like"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/header"
+                android:background="@drawable/border_set_bottom_top_2"
                 android:contentDescription="Back"
                 android:drawableStart="@drawable/un_heart"
                 android:drawablePadding="5dp"
-                android:paddingLeft="50dp"
+                android:paddingLeft="40dp"
                 android:src="@drawable/ic_baseline_arrow_back_24"
                 android:text="Yêu thích"
                 android:textAlignment="textStart" />
@@ -304,7 +308,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/btn_primary"
                 android:contentDescription="Back"
                 android:src="@drawable/ic_baseline_arrow_back_24"
                 android:text="Ứng tuyển"
