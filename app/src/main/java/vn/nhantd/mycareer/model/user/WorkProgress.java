@@ -14,13 +14,21 @@ import lombok.Data;
 public class WorkProgress implements Serializable {
 
     @SerializedName("id")
+    @Builder.Default
     private String _id = "";
+    @Builder.Default
     private String _partition = "";
+    @Builder.Default
     private String company_name = "";
+    @Builder.Default
     private String description = "";
+    @Builder.Default
     private String from_date = "";
+    @Builder.Default
     private String position = "";
+    @Builder.Default
     private String to_date = "";
+    @Builder.Default
     private String user_id = "";
 
     // Standard getters & setters

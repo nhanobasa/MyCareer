@@ -3,7 +3,9 @@ package vn.nhantd.mycareer.model.job;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CareerCategory {
+import java.io.Serializable;
+
+public class CareerCategory implements Serializable {
 
     @SerializedName("id")
     private String _id = null;

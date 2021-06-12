@@ -46,12 +46,13 @@ public class EditProfileUserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profile_user);
 
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("profile-user");
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_profile_user);
+        setContentView(binding.getRoot());
+
         model = new EditProfileUserViewModel();
         model.setUser(user);
         Picasso.get().load(user.getPhotoUrl()).into(binding.imgProfile);

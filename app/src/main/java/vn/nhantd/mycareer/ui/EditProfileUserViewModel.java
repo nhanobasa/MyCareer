@@ -54,7 +54,6 @@ public class EditProfileUserViewModel<Int> extends ViewModel {
         this.user = user;
     }
 
-    //
     public EditProfileUserViewModel() {
 //        // get User from api
 //        User currentUser = FirebaseAuthentication.getProfileUser();

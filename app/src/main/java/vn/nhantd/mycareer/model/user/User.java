@@ -14,22 +14,34 @@ import lombok.Data;
 @Builder
 public class User implements Serializable {
 
-    @SerializedName("id")
+    @SerializedName("_id")
+    @Builder.Default
     private String _id = "";
+    @Builder.Default
     private String _partition = "";
+    @Builder.Default
     private String address = "";
     private User_career_goals career_goals;
+    @Builder.Default
     private String dob = "";
     private User_education education;
+    @Builder.Default
     private String email = "";
     private User_experience experience;
+    @Builder.Default
     private String marital_status = "";
+    @Builder.Default
     private String name = "";
+    @Builder.Default
     private String phone = "";
+    @Builder.Default
     private String photoUrl = "";
     private User_references references;
+    @Builder.Default
     private String sex = "";
+    @Builder.Default
     private String uid = "";
+    @Builder.Default
     private String username = "";
 
     // Standard getters & setters

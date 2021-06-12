@@ -118,15 +118,15 @@ public class UpdateSalaryActivity extends AppCompatActivity {
                 // thực hiện update user
 
                 if (txtSalaryFrom.getText().toString().equals("")) {
-                    salary.setFrom_salary(0.0);
+                    salary.setFrom_salary(0L);
                 } else {
-                    salary.setFrom_salary(Double.valueOf(txtSalaryFrom.getText().toString()));
+                    salary.setFrom_salary(Long.valueOf(txtSalaryFrom.getText().toString()));
                 }
 
                 if (txtSalaryTo.getText().toString().equals("")) {
-                    salary.setTo_salary(0.0);
+                    salary.setTo_salary(0L);
                 } else {
-                    salary.setTo_salary(Double.valueOf(txtSalaryTo.getText().toString()));
+                    salary.setTo_salary(Long.valueOf(txtSalaryTo.getText().toString()));
                 }
 
                 data.putExtra(EXTRA_DATA, salary);

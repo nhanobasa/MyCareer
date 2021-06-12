@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="JobViewModel"
+            type="vn.nhantd.mycareer.ui.JobViewModel" />
+    </data>
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".JobActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/btn_back"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@null"
+                        android:contentDescription="Back"
+                        android:src="@drawable/ic_baseline_arrow_back_24" />
+
+                    <TextView
+                        android:id="@+id/txt_activity_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:gravity="center"
+                        android:text="Thay đổi mức lương"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_profile_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="right"
+                    android:layout_marginEnd="-2dp"
+                    android:background="@null"
+                    android:text="Chia sẻ"
+                    android:textColor="@color/white" />
+
+
+            </RelativeLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/header"
+                    android:orientation="vertical"
+                    android:paddingBottom="25dp">
+
+
+                    <LinearLayout
+                        android:id="@+id/layout_job_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp"
+                        android:background="@color/colorPrimary"
+                        android:orientation="horizontal">
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="-40dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/img_company"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:background="@color/white"
+                            android:src="@drawable/ic_baseline_business_24" />
+
+                        <TextView
+                            android:id="@+id/txt_job_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@{JobViewModel.job.name}"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txt_company_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
+                            android:text="@{JobViewModel.employer.name}" />
+
+                        <TextView
+                            android:id="@+id/txt_job_salary"
+                            android:drawablePadding="5dp"
+                            android:drawableStart="@drawable/ic_baseline_attach_money_24"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
+                            android:text="@{`Mức lương: ` + JobViewModel.job.salary.toString()}"
+                            android:textColor="#F44336"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txt_job_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/border_set_bottom"
+                        android:drawableStart="@drawable/ic_baseline_location_on_24"
+                        android:drawablePadding="5dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="8dp"
+                        android:text="@{JobViewModel.job.address}"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_job_level"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/border_set_bottom"
+                        android:drawableStart="@drawable/positioning"
+                        android:drawablePadding="5dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="8dp"
+                        android:text="@{JobViewModel.job.level}"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_job_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/border_set_bottom"
+                        android:drawableStart="@drawable/level"
+                        android:drawablePadding="5dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="8dp"
+                        android:text="@{JobViewModel.job.category}"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_job_dt"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/border_set_bottom"
+                        android:drawableStart="@drawable/ic_baseline_calendar_today_24"
+                        android:drawablePadding="5dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="8dp"
+                        android:text="@{JobViewModel.timeToDate()}"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/border_set_bottom"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="8dp"
+                        android:text="Mô tả công việc"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_job_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="8dp"
+                        android:text="@{JobViewModel.job.description.description}"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/border_set_bottom"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="8dp"
+                        android:text="Phúc lợi"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_job_welfare"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="8dp"
+                        android:text="@{JobViewModel.job.description.welfare}"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/border_set_bottom"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="8dp"
+                        android:text="Yêu cầu"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_job_requirement"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="8dp"
+                        android:text="@{JobViewModel.job.description.requirements}"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/border_set_bottom"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="8dp"
+                        android:text="Thông tin khác"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_job_more_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="8dp"
+                        android:text="@{JobViewModel.moreDetail}"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <Button
+                android:id="@+id/btn_job_like"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/header"
+                android:contentDescription="Back"
+                android:drawableStart="@drawable/un_heart"
+                android:drawablePadding="5dp"
+                android:paddingLeft="50dp"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                android:text="Yêu thích"
+                android:textAlignment="textStart" />
+
+            <Button
+                android:id="@+id/btn_job_apply"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:contentDescription="Back"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                android:text="Ứng tuyển"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

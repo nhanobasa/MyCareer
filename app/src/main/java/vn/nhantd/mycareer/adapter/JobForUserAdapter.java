@@ -29,13 +29,13 @@ import vn.nhantd.mycareer.api.ApiService;
 import vn.nhantd.mycareer.model.employeer.Employer;
 import vn.nhantd.mycareer.model.job.Job;
 
-public class TopJobAdapter extends RecyclerView.Adapter<TopJobAdapter.TopCategoryViewHolder> {
+public class JobForUserAdapter extends RecyclerView.Adapter<JobForUserAdapter.TopCategoryViewHolder> {
     private static final String TAG = "REALM_RECYCLER_ADAPTER";
-    private final Context context;
+    private Context context;
     private Employer employer;
     List<Job> data;
 
-    public TopJobAdapter(Context context, List<Job> data) {
+    public JobForUserAdapter(Context context, List<Job> data) {
         this.context = context;
         this.data = data;
     }
@@ -54,8 +54,8 @@ public class TopJobAdapter extends RecyclerView.Adapter<TopJobAdapter.TopCategor
     public TopCategoryViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         Log.i(TAG, "Creating view holder");
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View v = inflater.inflate(R.layout.top_job_item, parent, false);
-        return new TopJobAdapter.TopCategoryViewHolder(v);
+        View v = inflater.inflate(R.layout.job_for_user_item, parent, false);
+        return new JobForUserAdapter.TopCategoryViewHolder(v);
     }
 
     @Override
@@ -100,6 +100,7 @@ public class TopJobAdapter extends RecyclerView.Adapter<TopJobAdapter.TopCategor
             }
         });
 
+
     }
 
     @Override
@@ -110,7 +111,7 @@ public class TopJobAdapter extends RecyclerView.Adapter<TopJobAdapter.TopCategor
         return data.size();
     }
 
-    public class TopCategoryViewHolder extends RecyclerView.ViewHolder{
+    public static class TopCategoryViewHolder extends RecyclerView.ViewHolder {
         ImageView imgCompany;
         TextView txtJobName;
         TextView txtCompanyName;
@@ -123,7 +124,7 @@ public class TopJobAdapter extends RecyclerView.Adapter<TopJobAdapter.TopCategor
             txtJobName = itemView.findViewById(R.id.txt_job_name);
             txtCompanyName = itemView.findViewById(R.id.txt_company_name);
             txtJobSalary = itemView.findViewById(R.id.txt_job_salary);
-            cardView = itemView.findViewById(R.id.top_job_item);
+            cardView = itemView.findViewById(R.id.card_view_job_for_user);
         }
     }
 }

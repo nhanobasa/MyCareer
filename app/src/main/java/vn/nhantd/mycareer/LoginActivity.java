@@ -196,9 +196,9 @@ public class LoginActivity extends AppCompatActivity {
         ApiService.apiService.createUsr(user).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                if(response.body()!=null){
+                if (response.body() != null) {
                     Log.d(TAG, "get all work progress of user successful!");
-                }else
+                } else
                     Log.d(TAG, "get all work progress of user fail!");
             }
 
@@ -209,4 +209,9 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        System.out.println("hello");
+        finish();
+    }
 }

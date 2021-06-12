@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import java.util.List;
 
 import vn.nhantd.mycareer.R;
+import vn.nhantd.mycareer.adapter.JobForUserAdapter;
 import vn.nhantd.mycareer.adapter.TopJobAdapter;
 import vn.nhantd.mycareer.databinding.FragmentHomeBinding;
 import vn.nhantd.mycareer.model.job.Job;
@@ -27,6 +28,7 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private HomeViewModel model;
     private TopJobAdapter adapter;
+    private JobForUserAdapter jobForUserAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -88,6 +90,21 @@ public class HomeFragment extends Fragment {
                 if (jobs != null) {
                     adapter = new TopJobAdapter(getContext(), jobs);
                     binding.recyclerviewRecommendedTopJob.setAdapter(adapter);
+                }
+            }
+        });
+
+        // Xử lý recycler view cho phần gợi ý top job
+        LinearLayoutManager llv = new LinearLayoutManager(getContext());
+        llv.setOrientation(LinearLayoutManager.VERTICAL);
+        binding.recyclerviewRecommendedJob.setLayoutManager(llv);
+
+        model.getJob4User().observe(this, new Observer<List<Job>>() {
+            @Override
+            public void onChanged(List<Job> jobs) {
+                if (jobs != null) {
+                    jobForUserAdapter = new JobForUserAdapter(getContext(), jobs);
+                    binding.recyclerviewRecommendedJob.setAdapter(jobForUserAdapter);
                 }
             }
         });

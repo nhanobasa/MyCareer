@@ -2,14 +2,15 @@ package vn.nhantd.mycareer.model.job;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 import vn.nhantd.mycareer.model.Transaction;
 import vn.nhantd.mycareer.model.user.Salary;
 
-public class Job {
+public class Job implements Serializable {
 
-    @SerializedName("id")
+    @SerializedName("_id")
     private String _id = null;
     private String _partition = "sync";
     private String employer_id = null;

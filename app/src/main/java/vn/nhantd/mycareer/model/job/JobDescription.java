@@ -1,6 +1,8 @@
 package vn.nhantd.mycareer.model.job;
 
-public class JobDescription {
+import java.io.Serializable;
+
+public class JobDescription implements Serializable {
     private String description = "";
     private String welfare = "";
     private String requirements = "";
