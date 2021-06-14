@@ -4,25 +4,24 @@
     android:id="@+id/card_view_job_for_user"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:layout_marginBottom="10dp"
     android:layout_marginStart="3dp"
     android:layout_marginEnd="5dp"
-    android:background="@drawable/border_set_bottom"
-    >
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/border_set_bottom">
 
     <LinearLayout
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
 
         <ImageView
             android:id="@+id/img_company"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_baseline_business_24" />
+            android:src="@drawable/mycareer_logo" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,32 +32,21 @@
 
 
             <TextView
-                android:id="@+id/txt_job_name"
+                android:id="@+id/txt_sub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Data Analytic"
+                android:text="MyCareer"
                 android:textColor="@color/colorPrimary"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txt_company_name"
+                android:id="@+id/txt_content"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tập đoàn VCCorp"
-                android:textSize="14sp"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/txt_job_salary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_baseline_attach_money_24"
-                android:text="Thỏa thuận"
-                android:textColor="#F44336"
-                android:textSize="14sp"
-                android:textStyle="bold"
+                android:layout_height="match_parent"
+                android:text="Content"
+                android:textSize="12sp"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </LinearLayout>

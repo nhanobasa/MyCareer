@@ -3,7 +3,7 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
-//apply plugin: 'realm-android'
+apply plugin: 'realm-android'
 
 android {
     buildFeatures {
@@ -40,9 +40,9 @@ android {
     }
 }
 
-//realm {
-//    syncEnabled = true
-//}
+realm {
+    syncEnabled = true
+}
 
 dependencies {
     // Also declare the dependency for the Google Play services library and specify its version
@@ -69,6 +69,9 @@ dependencies {
     // utils
     // https://mvnrepository.com/sartifact/org.mongodb/bson
     implementation group: 'org.mongodb', name: 'bson', version: '3.12.1'
+    implementation 'com.google.firebase:firebase-storage:20.0.0'
+    implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    implementation 'androidx.work:work-runtime:2.4.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

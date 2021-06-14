@@ -24,4 +24,8 @@
     <string name="network_error">Không thể kết nối Internet</string>
     <string name="btn_try_connect">Thử lại</string>
     <string name="btn_quen_mat_khau">Quên mật khẩu</string>
+    <string name="welcome_apply">Bạn đã sẵn sàng để trở thành một thành viên của công ty chúng tôi!</string>
+    <string name="default_notification_channel_id">2021</string>
+    <string name="fcm_message">MyCareer</string>
+    <string name="token_fmt" >s</string>
 </resources>

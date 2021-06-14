@@ -32,7 +32,6 @@ import vn.nhantd.mycareer.model.job.Job;
 public class TopJobAdapter extends RecyclerView.Adapter<TopJobAdapter.TopCategoryViewHolder> {
     private static final String TAG = "REALM_RECYCLER_ADAPTER";
     private final Context context;
-    private Employer employer;
     List<Job> data;
 
     public TopJobAdapter(Context context, List<Job> data) {
@@ -73,26 +72,9 @@ public class TopJobAdapter extends RecyclerView.Adapter<TopJobAdapter.TopCategor
                 holder.cardView.setBackgroundResource(R.drawable.border_set_bottom_top_3);
                 break;
             default:
-                holder.cardView.setBackgroundResource(R.drawable.border_set_bottom);
+                holder.cardView.setBackgroundResource(R.drawable.border_set_bottom_top_0);
                 break;
         }
-
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, JobActivity.class);
-
-                // get item ở vị trí hiện tại
-                Job job = data.get(position);
-
-                // put job data
-                intent.putExtra("select-job", job);
-                // put employer data
-                intent.putExtra("select-job-employer", employer);
-
-                context.startActivity(intent);
-            }
-        });
 
         Job job = data.get(position);
         Log.i(TAG, "Binding view holder: " + job.getName());
@@ -101,13 +83,30 @@ public class TopJobAdapter extends RecyclerView.Adapter<TopJobAdapter.TopCategor
         ApiService.apiService.getEmployer(job.getEmployer_id()).enqueue(new Callback<Employer>() {
             @Override
             public void onResponse(Call<Employer> call, Response<Employer> response) {
-                employer = response.body();
+                Employer employer = response.body();
                 Log.i(TAG, "Get Employer profile successful!");
                 if (employer.getPhotoUrl() != null)
                     Picasso.get().load(Uri.parse(employer.getPhotoUrl())).into(holder.imgCompany);
                 holder.txtJobName.setText(job.getName());
                 holder.txtCompanyName.setText(employer.getName());
                 holder.txtJobSalary.setText(job.getSalary().toString());
+
+                holder.cardView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, JobActivity.class);
+
+                        // get item ở vị trí hiện tại
+//                        Job job = data.get(position);
+
+                        // put job data
+                        intent.putExtra("select-job", job);
+                        // put employer data
+                        intent.putExtra("select-job-employer", employer);
+
+                        context.startActivity(intent);
+                    }
+                });
             }
 
             @Override

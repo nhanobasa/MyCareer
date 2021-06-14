@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -16,8 +15,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.squareup.picasso.Picasso;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,6 +82,8 @@ public class ProfileUserFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        // Tạo view model
+        model = new ViewModelProvider(this).get(ProfileUserViewModel.class);
 
     }
 
@@ -93,20 +92,35 @@ public class ProfileUserFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile_user, container, false);
-
-//        binding = FragmentProfileUserBinding.inflate(inflater, container, false);
         binding = FragmentProfileUserBinding.bind(v);
-        binding.btnProfileEdit.setOnClickListener(new View.OnClickListener() {
+
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        binding.recyclerviewProfileWorkProgress.setLayoutManager(llm);
+
+        model.getUser().observe(this, new Observer<User>() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), EditProfileUserActivity.class);
-                intent.putExtra("profile-user", model.getUser().getValue());
-                startActivityForResult(intent, 1);
+            public void onChanged(User user) {
+                if (user != null) {
+                    binding.setProfileUserViewModel(model);
+                    if (user.getPhotoUrl() != null)
+                        Picasso.get().load(user.getPhotoUrl()).into(binding.imgProfile);
+                    adapter = new WorkProgressAdapter(getContext(), workProgressList);
+                    binding.recyclerviewProfileWorkProgress.setAdapter(adapter);
+                    //get list work progress
+                    getAllWorkProgress(user);
+
+                    binding.btnProfileEdit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getContext(), EditProfileUserActivity.class);
+                            intent.putExtra("profile-user", model.getUser().getValue());
+                            startActivityForResult(intent, 1067);
+                        }
+                    });
+                }
             }
         });
-
-        // Tạo view model
-        model = new ViewModelProvider(this).get(ProfileUserViewModel.class);
 
 
         return binding.getRoot();
@@ -135,32 +149,6 @@ public class ProfileUserFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        binding.recyclerviewProfileWorkProgress.setLayoutManager(llm);
-
-        model.getUser().observe(this, new Observer<User>() {
-            @Override
-            public void onChanged(User user) {
-                if (user != null) {
-                    binding.setProfileUserViewModel(model);
-                    if (user.getPhotoUrl() != null)
-                        Picasso.get().load(user.getPhotoUrl()).into(binding.imgProfile);
-                    adapter = new WorkProgressAdapter(getContext(), workProgressList);
-                    binding.recyclerviewProfileWorkProgress.setAdapter(adapter);
-                    //get list work progress
-                    getAllWorkProgress(user);
-                }
-            }
-        });
-
-
-    }
-
-    @Override
     public void onDestroy() {
         binding = null;
         super.onDestroy();
@@ -169,7 +157,7 @@ public class ProfileUserFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
+        if (requestCode == 1067) {
             if (resultCode == Activity.RESULT_OK) {
                 User result = (User) data.getSerializableExtra(EditProfileUserActivity.EXTRA_DATA);
                 ApiService.apiService.updateUser(result.get_id(), result).enqueue(new Callback<String>() {
@@ -177,6 +165,7 @@ public class ProfileUserFragment extends Fragment {
                     public void onResponse(Call<String> call, Response<String> response) {
                         if (response.body().equals("OK")) {
                             Log.d(TAG, "update user successful!");
+                            model.setUser(result);
                         } else {
                             Log.d(TAG, "update user failure!");
                         }

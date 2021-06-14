@@ -16,6 +16,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import vn.nhantd.mycareer.model.Notification;
 import vn.nhantd.mycareer.model.Transaction;
 import vn.nhantd.mycareer.model.employeer.Employer;
 import vn.nhantd.mycareer.model.job.CareerCategory;
@@ -39,7 +40,7 @@ public interface ApiService {
             .build();
 
     ApiService apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.2:10399/mycareer/api/v1/")
+            .baseUrl("http://192.168.1.6:10399/mycareer/api/v1/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
@@ -64,6 +65,9 @@ public interface ApiService {
     @GET("job/all")
     Call<List<Job>> getAllJobs(@Query("limit") Integer limit);
 
+    @GET("job/profile")
+    Call<Job> getJobProfile(@Query("id") String job_id);
+
     @GET("employer/job/{id}")
     Call<List<Job>> getAllJobsOfEmployer(@Path("id") String employer_id, @Query("status") String status, @Query("limit") Integer limit);
 
@@ -81,5 +85,8 @@ public interface ApiService {
 
     @POST("employer/transaction/{id}")
     Call<String> setEmployerTransaction(@Path("id") String employer_id, @Body Transaction transaction);
+
+    @GET("notification/")
+    Call<List<Notification>> getNotificationOfUser(@Query("user_id") String user_id);
 
 }

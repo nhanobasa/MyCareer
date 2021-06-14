@@ -1,6 +1,7 @@
 package vn.nhantd.mycareer.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.List;
 
@@ -68,15 +70,52 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        System.out.println("ON CREATE!!!!!!");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        System.out.println("Home fragment - create view");
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         binding = FragmentHomeBinding.bind(v);
+        mainProcess();
 
+        // xử lý sự kiện cho scroll quá mức -> reload trang
+        binding.swipeContainerHome.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // cho load lại data
+                mainProcess();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            if (binding.swipeContainerHome != null) {
+                                binding.swipeContainerHome.setRefreshing(false);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, 1500);
+
+            }
+        });
+
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
+    private void mainProcess() {
         model = new ViewModelProvider(this).get(HomeViewModel.class);
 
         // Xử lý recycler view cho phần gợi ý top job
@@ -108,13 +147,5 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-
-        return binding.getRoot();
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 }

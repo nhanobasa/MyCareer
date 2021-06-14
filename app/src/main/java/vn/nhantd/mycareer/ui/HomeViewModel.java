@@ -26,6 +26,10 @@ public class HomeViewModel extends ViewModel {
     }
 
     public HomeViewModel() {
+        initData();
+    }
+
+    public void initData() {
         // get Top Job from api
         ApiService.apiService.getAllJobs(20).enqueue(new Callback<List<Job>>() {
             @Override
@@ -73,7 +77,6 @@ public class HomeViewModel extends ViewModel {
                 }
             });
         }
-
     }
 
     public void setTopJob(List<Job> category) {

@@ -1,17 +1,22 @@
 package vn.nhantd.mycareer.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import vn.nhantd.mycareer.LoginActivity;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import java.util.List;
+
 import vn.nhantd.mycareer.R;
-import vn.nhantd.mycareer.firebase.auth.FirebaseAuthentication;
+import vn.nhantd.mycareer.adapter.NotiAdapter;
+import vn.nhantd.mycareer.databinding.FragmentNotificationBinding;
+import vn.nhantd.mycareer.model.Notification;
+import vn.nhantd.mycareer.ui.NotiViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,7 +24,8 @@ import vn.nhantd.mycareer.firebase.auth.FirebaseAuthentication;
  * create an instance of this fragment.
  */
 public class NotificationFragment extends Fragment {
-
+    private FragmentNotificationBinding binding;
+    private NotiViewModel model;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -58,13 +64,35 @@ public class NotificationFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        model = new ViewModelProvider(this).get(NotiViewModel.class);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notification, container, false);
+        View v = inflater.inflate(R.layout.fragment_notification, container, false);
+        binding = FragmentNotificationBinding.bind(v);
+
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        binding.listNoti.setLayoutManager(llm);
+
+        model.getmListNotification().observe(this, new Observer<List<Notification>>() {
+            @Override
+            public void onChanged(List<Notification> notifications) {
+                if (notifications != null && notifications.size() > 0) {
+                    System.out.println("Gen list noti");
+                    NotiAdapter adapter = new NotiAdapter(notifications);
+                    binding.listNoti.setAdapter(adapter);
+                }
+            }
+        });
+
+        return binding.getRoot();
+
     }
 
 

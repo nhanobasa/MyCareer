@@ -32,7 +32,6 @@ import vn.nhantd.mycareer.model.job.Job;
 public class JobForUserAdapter extends RecyclerView.Adapter<JobForUserAdapter.TopCategoryViewHolder> {
     private static final String TAG = "REALM_RECYCLER_ADAPTER";
     private Context context;
-    private Employer employer;
     List<Job> data;
 
     public JobForUserAdapter(Context context, List<Job> data) {
@@ -61,22 +60,6 @@ public class JobForUserAdapter extends RecyclerView.Adapter<JobForUserAdapter.To
     @Override
     public void onBindViewHolder(@NonNull @NotNull TopCategoryViewHolder holder, int position) {
 
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, JobActivity.class);
-
-                // get item ở vị trí hiện tại
-                Job job = data.get(position);
-
-                // put job data
-                intent.putExtra("select-job", job);
-                // put employer data
-                intent.putExtra("select-job-employer", employer);
-
-                context.startActivity(intent);
-            }
-        });
 
         Job job = data.get(position);
         Log.i(TAG, "Binding view holder: " + job.getName());
@@ -85,13 +68,29 @@ public class JobForUserAdapter extends RecyclerView.Adapter<JobForUserAdapter.To
         ApiService.apiService.getEmployer(job.getEmployer_id()).enqueue(new Callback<Employer>() {
             @Override
             public void onResponse(Call<Employer> call, Response<Employer> response) {
-                employer = response.body();
+                Employer employer = response.body();
                 Log.i(TAG, "Get Employer profile successful!");
                 if (employer.getPhotoUrl() != null)
                     Picasso.get().load(Uri.parse(employer.getPhotoUrl())).into(holder.imgCompany);
                 holder.txtJobName.setText(job.getName());
                 holder.txtCompanyName.setText(employer.getName());
                 holder.txtJobSalary.setText(job.getSalary().toString());
+                holder.cardView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, JobActivity.class);
+
+                        // get item ở vị trí hiện tại
+//                        Job job = data.get(position);
+
+                        // put job data
+                        intent.putExtra("select-job", job);
+                        // put employer data
+                        intent.putExtra("select-job-employer", employer);
+
+                        context.startActivity(intent);
+                    }
+                });
             }
 
             @Override

@@ -7,25 +7,24 @@
     android:layout_marginStart="3dp"
     android:layout_marginEnd="1dp"
     android:layout_marginBottom="8dp"
-    android:background="@drawable/border_set_bottom"
-    app:cardCornerRadius="15dp">
+    android:background="@drawable/border_set_bottom">
 
     <LinearLayout
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
 
         <ImageView
             android:id="@+id/img_company"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_baseline_business_24" />
 
         <LinearLayout
-            android:layout_width="240dp"
+            android:layout_width="230dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical"
@@ -59,7 +58,6 @@
                 android:textColor="#F44336"
                 android:textSize="14sp"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
         </LinearLayout>
 

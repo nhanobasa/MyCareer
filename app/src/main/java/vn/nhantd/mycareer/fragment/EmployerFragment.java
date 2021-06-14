@@ -14,17 +14,17 @@ import java.util.List;
 
 import vn.nhantd.mycareer.R;
 import vn.nhantd.mycareer.adapter.EmployerAdapter;
-import vn.nhantd.mycareer.databinding.FragmentJobBinding;
+import vn.nhantd.mycareer.databinding.FragmentEmployerBinding;
 import vn.nhantd.mycareer.model.employeer.Employer;
 import vn.nhantd.mycareer.ui.EmployerViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link JobFragment#newInstance} factory method to
+ * Use the {@link EmployerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class JobFragment extends Fragment {
-    private FragmentJobBinding binding;
+public class EmployerFragment extends Fragment {
+    private FragmentEmployerBinding binding;
     private EmployerViewModel model;
     private EmployerAdapter adapter;
 
@@ -38,7 +38,7 @@ public class JobFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public JobFragment() {
+    public EmployerFragment() {
         // Required empty public constructor
     }
 
@@ -48,11 +48,11 @@ public class JobFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment JobFragment.
+     * @return A new instance of fragment EmployerFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static JobFragment newInstance(String param1, String param2) {
-        JobFragment fragment = new JobFragment();
+    public static EmployerFragment newInstance(String param1, String param2) {
+        EmployerFragment fragment = new EmployerFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -67,15 +67,16 @@ public class JobFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        model = new ViewModelProvider(this).get(EmployerViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_job, container, false);
-        binding = FragmentJobBinding.bind(v);
-        model = new ViewModelProvider(this).get(EmployerViewModel.class);
+        View v = inflater.inflate(R.layout.fragment_employer, container, false);
+        binding = FragmentEmployerBinding.bind(v);
+
 
         // Xử lý recycler view cho phần gợi ý top job
         LinearLayoutManager llm = new LinearLayoutManager(getContext());

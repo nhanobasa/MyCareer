@@ -43,6 +43,16 @@ public class User implements Serializable {
     private String uid = "";
     @Builder.Default
     private String username = "";
+    @Builder.Default
+    private String fgm_token = "";
+
+    public String getFgm_token() {
+        return fgm_token;
+    }
+
+    public void setFgm_token(String fgm_token) {
+        this.fgm_token = fgm_token;
+    }
 
     // Standard getters & setters
     public String get_id() {

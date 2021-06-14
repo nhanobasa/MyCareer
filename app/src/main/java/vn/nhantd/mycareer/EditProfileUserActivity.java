@@ -2,18 +2,32 @@ package vn.nhantd.mycareer;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnPausedListener;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +55,8 @@ public class EditProfileUserActivity extends AppCompatActivity {
     private WorkProgressAdapter adapter;
     private ActivityEditProfileUserBinding binding;
     private User user;
+    private Uri cvUri;
+    private FirebaseStorage storage;
     private EditProfileUserViewModel model;
 
     @Override
@@ -52,6 +68,8 @@ public class EditProfileUserActivity extends AppCompatActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_profile_user);
         setContentView(binding.getRoot());
+
+        storage = FirebaseStorage.getInstance();
 
         model = new EditProfileUserViewModel();
         model.setUser(user);
@@ -283,6 +301,16 @@ public class EditProfileUserActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
+
+        binding.imgProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), 2000);
+            }
+        });
     }
 
     @Override
@@ -301,5 +329,91 @@ public class EditProfileUserActivity extends AppCompatActivity {
                 binding.txtProfileSalary.setText(model.getUser().getCareer_goals().getSalary().toString());
             }
         }
+
+        if (requestCode == 2000) {
+            if (resultCode == Activity.RESULT_OK) {
+                if (data != null) {
+                    cvUri = data.getData();
+                    String fileName = cvUri.getLastPathSegment();
+                    fileName = fileName.substring(fileName.lastIndexOf("/") + 1); // ví dụ: TranDucNhan-CV.pdf
+
+                    // [START upload_create_reference]
+                    // Create a storage reference from our app
+                    StorageReference storageRef = storage.getReference();
+
+                    // Nếu upload CV cá nhân lên
+                    if (cvUri != null) {
+                        // Upload file and metadata to the path 'images/mountains.jpg'
+                        UploadTask uploadTask = storageRef.child("image/" + user.get_id() + "/" + fileName).putFile(cvUri);
+
+                        // thực hiện quá trình upload và đẩy transaction lên service
+                        uploadFileProcess(uploadTask);
+                    }
+                }
+            }
+        }
+    }
+
+    private void uploadFileProcess(UploadTask uploadTask) {
+        // Listen for state changes, errors, and completion of the upload.
+        uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                Log.d(TAG, "Upload is " + progress + "% done");
+            }
+        }).addOnPausedListener(new OnPausedListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onPaused(UploadTask.TaskSnapshot taskSnapshot) {
+                Log.d(TAG, "Upload is paused");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // Handle successful uploads on complete
+                // ...
+                Log.d(TAG, "Upload is done!");
+            }
+        });
+
+        // Sau khi tải file lên thành công, nhận url download file để add vào transaction
+        Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+            @Override
+            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                if (!task.isSuccessful()) {
+                    throw task.getException();
+                }
+
+                // Continue with the task to get the download URL
+                return task.getResult().getStorage().getDownloadUrl();
+            }
+        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                if (task.isSuccessful()) {
+                    Uri downloadUri = task.getResult();
+                } else {
+                    // Handle failures
+                    // ...
+                }
+            }
+        });
+        urlTask.addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<Uri> task) {
+                Uri uriDowload = task.getResult();
+                Log.d(TAG, "URi download: " + uriDowload);
+                if (user.get_id() != null) {
+                    User user = model.getUser();
+                    user.setPhotoUrl(uriDowload.toString());
+                    model.setUser(user);
+                }
+            }
+        });
     }
 }
